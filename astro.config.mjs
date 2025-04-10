@@ -17,11 +17,9 @@ import decapCmsOauth from "astro-decap-cms-oauth";
 
 // https://astro.build/config
 export default defineConfig( /** @type {import('astro').AstroUserConfig} */{
-  output: 'server',
-  site: 'https://astro-ink.vercel.app', // Your public domain, e.g.: https://my-site.dev/. Used to generate sitemaps and canonical URLs.
-  server: {
-    // port: 4321, // The port to run the dev server on.
-  },
+  output: 'static',
+  site: 'https://nato-blooming.github.io/ushiku',
+  base: '/ushiku/',
   markdown: {
     syntaxHighlight: 'shiki',
     shikiConfig: {
@@ -51,6 +49,5 @@ export default defineConfig( /** @type {import('astro').AstroUserConfig} */{
     optimizeDeps: {
       allowNodeBuiltins: true
     }
-  },
-  adapter: vercel()
+  }
 });
