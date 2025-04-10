@@ -3,31 +3,31 @@ import type { NavItems } from "./types";
 export const NAV_ITEMS: NavItems = {
 	home: {
 		path: "/",
-		title: "home",
+		title: "ホーム",
 	},
 	blog: {
 		path: "/blog",
-		title: "blog",
+		title: "観光地",
 	},
 	tags: {
 		path: "/tags",
-		title: "tags",
+		title: "ジャンル別",
 	},
 	media: {
-		path: "/media",
-		title: "media",
+		path: "/links",
+		title: "リンク集",
 	},
 	about: {
-		path: "/about",
-		title: "about",
+		path: "/others",
+		title: "その他",
 	},
 };
 
 export const SITE = {
 	// Your site's detail?
-	name: "Ink",
-	title: "Astro - Ink",
-	description: "Crisp, minimal, personal blog theme for Astro",
+	title: "牛久散歩部",
+	name: "牛久散歩部オンライン",
+	description: "食べて、見て、歩く。",
 	url: "https://astro-ink.vercel.app",
 	githubUrl: "https://github.com/one-aalam/astro-ink",
 	listDrafts: true,

@@ -1,0 +1,21 @@
+[
+  {
+    "title": "牛久市公式サイト",
+    "url": "https://www.city.ushiku.lg.jp/",
+    "description": "市の公式情報や観光案内が掲載されています。",
+    "icon": "市"
+  },
+  {
+    "title": "牛久駅時刻表",
+    "url": "https://www.jreast-timetable.jp/timetable/list0222.html",
+    "description": "帰りの電車を調べるために。",
+    "icon": "JR"
+  },
+  {
+    "title": "かっぱ号（牛久市コミュニティバス）", 
+    "url": "https://www.city.ushiku.lg.jp/page/page000928.html",
+    "description": "牛久駅周辺の足となるかっぱ号の時刻表。",
+    "icon": "🚌"
+  }
+]
+

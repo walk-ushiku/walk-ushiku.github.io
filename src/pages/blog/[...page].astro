@@ -7,8 +7,8 @@ import PostPreviewList from '$/components/PostPreviewList.astro'
 import Paginator from '$/components/Paginator.astro'
 import { PAGE_SIZE } from '$/config'
 
-let title = 'Blog'
-let description = 'All the articles posted so far...'
+let title = '観光地'
+let description = 'メニューからジャンル別の絞り込みもできます。'
 
 export async function getStaticPaths({ paginate }) {
   const allPosts = await getCollection('blog');

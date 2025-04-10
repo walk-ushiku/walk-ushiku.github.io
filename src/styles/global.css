@@ -1,4 +1,12 @@
 @tailwind base;
+
+@font-face {
+  font-family: 'Mamelon';
+  src: url('/fonts/Mamelon-4-Hi-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* https://github.com/tailwindlabs/tailwindcss/discussions/2917 */
 @layer base {
 	html {

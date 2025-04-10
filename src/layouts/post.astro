@@ -33,34 +33,10 @@ const AUTHOR_AVATAR = content.authorImage ? content.authorImage : SITE?.authorIm
     </head>
     <MainLayout>
         <div class="post__header">
+            <h1 class="post__title">{ content.title }</h1>
             <div class="post__tags">
                 { content.tags.length > 0 && content.tags.map(tag => <a class="post__tag" href={`/tags/${tag}`} title={tag}>{tag}</a>) }
             </div>
-            <h1 class="post__title">{ content.title }</h1>
-            <h5 class={`post__desc ${AUTHOR_AVATAR ? 'flex flex-row gap-2' : ''}`}>
-                { AUTHOR_AVATAR ? <img class="avatar" src={AUTHOR_AVATAR} alt={`${ AUTHOR_NAME }'s avatar`} /> : ''}
-                <div class={AUTHOR_AVATAR ? 'flex flex-col border-l-2 pl-2' : ''}>
-                    {
-                        AUTHOR_TWITTER ?
-                            <a class="post__author" href={`https://twitter.com/${AUTHOR_TWITTER}`} title={`${AUTHOR_NAME}'s twitter`} target="_blank" rel="external">{ AUTHOR_NAME }</a>
-                            :
-                            <span class="post__author">{ AUTHOR_NAME }</span>
-                    }
-                    {!AUTHOR_AVATAR ? ' | ' : ''}
-                    <span class="post__date">
-                        <!-- post creation/updation data -->
-                        { new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(new Date(content.date))}
-                    </span>
-                    <span class="post__stats">
-                        { USE_VIEW_STATS && ` | `}
-                        { USE_VIEW_STATS && 
-                            <Icon class="w-5 h-5 inline-block" pack="mdi" name="eye" />
-                            <PostStats slug={meta?.slug} client:load /> 
-                        }
-                        <!-- | <Icon class="w-5 h-5 inline-block" pack="mdi" name="clock" /> 2 mins -->
-                    </span>
-                </div>
-            </h5>
         </div>
         {
             content.image ?
@@ -76,38 +52,6 @@ const AUTHOR_AVATAR = content.authorImage ? content.authorImage : SITE?.authorIm
         <Prose>
             <slot />
         </Prose>
-        <div class="post__footer">
-            { USE_AUTHOR_CARD &&
-                <br/>
-                <div class="author-card">
-                    { AUTHOR_AVATAR ? <img class="author-card__img avatar avatar--lg" src={AUTHOR_AVATAR} alt={`${ AUTHOR_NAME }'s avatar`} /> : ''}
-                    <div class="author-card__meta">
-                        {
-                            AUTHOR_TWITTER ?
-                                <a class="author-card__author" href={`https://twitter.com/${AUTHOR_TWITTER}`} title={`${AUTHOR_NAME}'s twitter`} target="_blank" rel="external">{ AUTHOR_NAME }</a>
-                                :
-                                <span class="author-card__author">{ AUTHOR_NAME }</span>
-                        }
-                        <p class="author-card__bio">{ SITE.authorBio }</p>
-                        <br/>
-                        {
-                            USE_SUBSCRIPTION ?
-                            <form action="" class="subscription-form">
-                                <label for="email"></label>
-                                <input type="email" name="email" class="flex-grow border-0 text-theme-accent-gray-dark" required="true">
-                                <button type="submit">Subscribe</button>
-                            </form> :
-                            <a class="author-card__follow-btn button" target="_blank" href={`https://twitter.com/intent/follow?screen_name=${AUTHOR_TWITTER}`}><Icon class="w-5 h-5 inline-block" pack="mdi" name="twitter" /> Follow on Twitter</a>
-                        }
-                    </div>
-                </div>
-                <br/>
-            }
-            {
-                meta?.collection && meta?.id && 
-                    <EditUrl label=" Suggest changes on GitHub" editUrl={`${SITE.githubUrl}/tree/main/src/content/${meta?.collection}/${meta?.id}`}/>
-            }
-        </div>
     </MainLayout>
 </html>
 <style>
