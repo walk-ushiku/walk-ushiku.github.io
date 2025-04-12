@@ -24,3 +24,6 @@ netlify
 .astro
 .idea
 .vercel
+
+# others
+*.swp

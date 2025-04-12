@@ -1,0 +1,27 @@
+---
+export const prerender = true
+
+import { getEntryBySlug, getCollection } from "astro:content";
+import CourseLayout from '$/layouts/course.astro';
+import Code from '../../components/Code.astro'
+
+export async function getStaticPaths() {
+    const allPosts = await getCollection('course');
+    return allPosts.map(post => ({
+        params: {
+            slug: post.slug
+        }
+    }))
+}
+
+const { slug } = Astro.params
+const entry = await getEntryBySlug('course', slug!)
+
+const { id, collection, data } = entry
+const { Content } = await entry.render()
+---
+<CourseLayout meta={{id, collection, slug }} content={data} >
+    <Content components={{
+        code: Code
+    }}/>
+</CourseLayout>

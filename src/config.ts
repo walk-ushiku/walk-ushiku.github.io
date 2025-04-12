@@ -13,6 +13,10 @@ export const NAV_ITEMS: NavItems = {
 		path: "/tags",
 		title: "ジャンル別",
 	},
+	course: {
+		path: "/course",
+		title: "モデルコース",
+	},
 	media: {
 		path: "/links",
 		title: "リンク集",
@@ -25,8 +29,8 @@ export const NAV_ITEMS: NavItems = {
 
 export const SITE = {
 	// Your site's detail?
-	title: "牛久散歩部",
-	name: "牛久散歩部オンライン",
+	title: "うしくさんぽノート",
+	name: "うしくさんぽノート",
 	description: "食べて、見て、歩く。",
 	url: "https://astro-ink.vercel.app",
 	githubUrl: "https://github.com/one-aalam/astro-ink",
