@@ -1,37 +1,10 @@
 import type { NavItems } from "./types";
 
-export const NAV_ITEMS: NavItems = {
-	home: {
-		path: "/",
-		title: "ホーム",
-	},
-	blog: {
-		path: "/blog",
-		title: "観光地",
-	},
-	tags: {
-		path: "/tags",
-		title: "ジャンル別",
-	},
-	course: {
-		path: "/course",
-		title: "モデルコース",
-	},
-	media: {
-		path: "/links",
-		title: "リンク集",
-	},
-	about: {
-		path: "/others",
-		title: "その他",
-	},
-};
-
 export const SITE = {
 	// Your site's detail?
 	title: "うしくさんぽノート",
 	name: "うしくさんぽノート",
-	description: "食べて、見て、歩く。",
+	description: "歩く、牛久。",
 	url: "https://astro-ink.vercel.app",
 	githubUrl: "https://github.com/one-aalam/astro-ink",
 	listDrafts: true,

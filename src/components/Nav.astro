@@ -1,22 +1,108 @@
 ---
 import { toTitleCase } from '$/utils'
-import { NAV_ITEMS } from '$/config'
+const NAV_ITEMS: NavItems = {
+        home: {
+                path: "/",
+                title: "ホーム",
+        },
+        blog: {
+                title: "観光地",
+                children: [
+                  { path: "/blog", "title": "リストから探す"},
+                  { path: "/tags", "title": "ジャンルで探す"},
+                  { path: "/map", "title": "地図から探す"},
+                ],
+        },
+        course: {
+                path: "/course",
+                title: "モデルコース",
+        },
+        media: {
+                path: "/links",
+                title: "リンク集",
+        },
+        about: {
+                path: "/others",
+                title: "その他",
+        },
+};
+
+export const NAV_STYLES = {
+  topLevelText: "text-2xl font-semibold",
+  childText: "text-lg font-medium",
+  spacing: "space-y-4",
+  itemSpacing: "space-y-2 ml-4 mt-3",
+  linkBase: "block hover:underline",
+};
 ---
-<nav class="nav py-3">
-    <ul class="nav-list dark:text-theme-dark-secondary" transition:animate="fade">
-         {
-            Object.keys(NAV_ITEMS).map(navItemKey => <li>
-                <a class:list={[
-                    `pb-1 border-b-2 hover:border-gray-400 hover:dark:border-gray-700 `,
-                    Astro.url.pathname !== NAV_ITEMS[navItemKey].path ? 'border-gray-100 dark:border-gray-800': '',
-                    Astro.url.pathname === NAV_ITEMS[navItemKey].path ? 'border-theme-primary' : ''
-                ]} href={NAV_ITEMS[navItemKey].path} title={NAV_ITEMS[navItemKey].title}>{toTitleCase(NAV_ITEMS[navItemKey].title)}</a>
-            </li>)
+
+<!-- ハンバーガーアイコン -->
+<button id="menu-toggle" class="text-3xl p-1 sm:hidden">☰</button>
+
+<!-- オーバーレイ -->
+<div id="drawer-overlay" class="hidden fixed inset-0 bg-black/50 z-40"></div>
+
+<!-- スライドメニュー -->
+<aside id="drawer" class="hidden fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 z-50 shadow-md p-4">
+<button id="close-drawer" class="mb-4 text-xl">✕</button>
+<ul class={NAV_STYLES.spacing}>
+  {
+    Object.entries(NAV_ITEMS).map(([key, item]) => (
+      <li>
+        {
+          item.children ? (
+            <>
+              <span class={NAV_STYLES.topLevelText}>{item.title}</span>
+              <ul class={NAV_STYLES.itemSpacing}>
+                {
+                  item.children.map(child => (
+                    <li>
+                      <a
+                        href={child.path}
+                        class={`${NAV_STYLES.linkBase} ${NAV_STYLES.childText}`}
+                      >
+                        {toTitleCase(child.title)}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </>
+          ) : (
+            <a
+              href={item.path}
+              class={`${NAV_STYLES.linkBase} ${NAV_STYLES.topLevelText}`}
+            >
+              {toTitleCase(item.title)}
+            </a>
+          )
         }
-    </ul>
-</nav>
-<style>
-    .nav-list {
-        @apply inline-flex list-none gap-8 text-xl font-semibold text-theme-secondary dark:text-theme-dark-secondary py-2 flex-wrap mb-8
+      </li>
+    ))
+  }
+</ul>
+</aside>
+
+<!-- JSで制御 -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('menu-toggle');
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    const close = document.getElementById('close-drawer');
+
+    toggle.addEventListener('click', () => {
+      drawer.classList.remove('hidden');
+      overlay.classList.remove('hidden');
+    });
+
+    close.addEventListener('click', hide);
+    overlay.addEventListener('click', hide);
+
+    function hide() {
+      drawer.classList.add('hidden');
+      overlay.classList.add('hidden');
     }
-</style>
+  });
+</script>
+

@@ -48,5 +48,8 @@ export default defineConfig( /** @type {import('astro').AstroUserConfig} */{
     optimizeDeps: {
       allowNodeBuiltins: true
     }
+  },
+  server: {
+    host: true
   }
 });
