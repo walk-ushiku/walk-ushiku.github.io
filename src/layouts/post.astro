@@ -34,8 +34,16 @@ const AUTHOR_AVATAR = content.authorImage ? content.authorImage : SITE?.authorIm
     <MainLayout>
         <div class="post__header">
             <h1 class="post__title">{ content.title }</h1>
-            <div class="post__tags">
-                { content.tags.length > 0 && content.tags.map(tag => <a class="post__tag" href={`/tags/${tag}`} title={tag}>{tag}</a>) }
+            { content.tags.length > 0 && (
+                <div class="post__tags mt-2">
+                <span class="post__tag">タグ：</span>
+                {content.tags.map(tag => (
+                    <a class="post__tag" href={`/tags/${tag}`} title={tag}>
+                        #{tag}
+                    </a>)
+                )}
+                </div>
+            )}
             </div>
         </div>
         {

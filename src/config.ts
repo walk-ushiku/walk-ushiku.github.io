@@ -2,8 +2,8 @@ import type { NavItems } from "./types";
 
 export const SITE = {
 	// Your site's detail?
-	title: "牛久散歩ノート",
-	name: "牛久散歩ノート",
+	title: "うしくさんぽノート",
+	name: "うしくさんぽノート",
 	description: "歩く、牛久。",
 	url: "https://astro-ink.vercel.app",
 	githubUrl: "https://github.com/one-aalam/astro-ink",
