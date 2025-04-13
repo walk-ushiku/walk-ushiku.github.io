@@ -27,6 +27,6 @@ const { pages } = Astro.props
 const { tag } = Astro.params
 ---
 
-<DefaultPageLayout content={{ title: `${tag}`, description: `` }}>
+<DefaultPageLayout content={{ title: `タグ：${tag}`, description: `` }}>
     <PostPreviewList posts={pages} />
 </DefaultPageLayout>

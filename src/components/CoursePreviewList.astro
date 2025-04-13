@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import PostPreview from './CoursePreview.astro'
+import CoursePreview from './CoursePreview.astro'
 
 interface Props {
     posts: CollectionEntry<'blog'>
@@ -14,7 +14,7 @@ const sortedPosts = posts.sort((a, b) => new Date(b.date).valueOf() - new Date(a
 { heading ? <h5 class={`post-preview__heading post-preview__heading--${mode} ink-h`}>{heading}</h5> : ''}
 <section class={`post-preview__list post-preview__list--${mode}`}>
     {sortedPosts.map((post) => (
-        <PostPreview post={post} asCard={mode === 'row' ? true : false }/>
+        <CoursePreview post={post} asCard={mode === 'row' ? true : false }/>
     ))}
 </section>
 <style>

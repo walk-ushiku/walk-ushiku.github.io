@@ -8,16 +8,11 @@ import SearchBtn from './SearchBtn.svelte'
 
 <header class="header">
     <div class="header__logo flex items-center gap-1 justify-between">
-        <!--
-        <a href="/" class="avatar">
-            <img class="header__logo-img" src="/assets/icon.png" alt="Astro logo" />
-        </a>
-        -->
         <Nav />
         <h3 class="header__title dark:text-theme-dark-secondary">
             <a href="/">{ SITE.name }</a>
         </h3>
-        <nav class="header__nav flex ml-auto">
+        <nav class="header__nav flex pt-2 ml-auto">
             <ul class="header__ref-list">
                 <li>
                     <ModeSwitcherBtn client:visible />
@@ -29,13 +24,14 @@ import SearchBtn from './SearchBtn.svelte'
 
 <style>
     .header {
-        @apply flex flex-col gap-2 border-b pb-4 /* border-gray-200 dark:border-gray-700 - check styles/global.css */
+        @apply flex flex-col gap-3 border-b /* border-gray-200 dark:border-gray-700 - check styles/global.css */
+        pt-2 pb-2
     }
     .header__logo-img {
-        @apply w-8 h-8 rounded-lg overflow-hidden
+        @apply w-6 h-6 rounded-lg overflow-hidden
     }
     .header__title {
-        @apply text-3xl font-extrabold md:text-3xl text-theme-secondary dark:text-theme-dark-secondary
+        @apply text-2xl font-extrabold md:text-3xl text-theme-secondary dark:text-theme-dark-secondary
     }
     .header__desc {
         @apply text-xl flex-1 dark:text-gray-200

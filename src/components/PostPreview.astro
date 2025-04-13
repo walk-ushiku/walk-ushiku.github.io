@@ -12,7 +12,7 @@ const { post: { data: post, slug }, asCard = false } = Astro.props
 <div class={`post-preview ${asCard && 'post-preview--card'}`}>
     <div class="post-preview__date-box">
 
-        <div class="post-preview__date">
+        <div class="post-preview__icon">
             <span class="post-preview__date__icon text-5xl">{post.icon}</span>
         </div>
 
@@ -28,7 +28,7 @@ const { post: { data: post, slug }, asCard = false } = Astro.props
 </div>
 <style>
     .post-preview {
-        @apply flex gap-6;
+        @apply flex gap-3;
     }
     .post-preview--card {
         @apply flex flex-col-reverse gap-4 sm:w-72 md:w-60 lg:w-64;
@@ -39,7 +39,7 @@ const { post: { data: post, slug }, asCard = false } = Astro.props
     .post-preview--card .post-preview__date-box {
         @apply w-full
     }
-    .post-preview__date {
+    .post-preview__icon {
         @apply flex flex-col w-full text-center;
     }
     .post-preview--card .post-preview__date {
