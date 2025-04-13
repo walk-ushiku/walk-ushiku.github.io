@@ -7,16 +7,21 @@ const NAV_ITEMS: NavItems = {
         },
         blog: {
                 path: "/blog",
-                title: "観光地",
+                title: "観光・グルメ",
                 children: [
                   { path: "/blog", "title": "リストから探す"},
                   { path: "/tags", "title": "タグから探す"},
                   { path: "/map", "title": "地図から探す"},
+                  { path: "/photos", "title": "写真から探す🚧"},
                 ],
         },
         course: {
                 path: "/course",
                 title: "モデルコース",
+        },
+        event: {
+                path: "/events",
+                title: "イベント情報🚧",
         },
         media: {
                 path: "/links",
@@ -38,13 +43,13 @@ export const NAV_STYLES = {
 ---
 
 <!-- ハンバーガーアイコン -->
-<button id="menu-toggle" class="text-3xl p-1 mr-1">☰</button>
+<button id="menu-toggle" class="text-3xl p-1 mr-1 md:pl-4">☰</button>
 
 <!-- オーバーレイ -->
 <div id="drawer-overlay" class="hidden fixed inset-0 bg-black/50 z-40"></div>
 
 <!-- スライドメニュー -->
-<aside id="drawer" class="hidden fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 z-50 shadow-md p-4">
+<aside id="drawer" class="hidden fixed top-0 left-0 h-full w-56 bg-white dark:bg-gray-800 z-50 shadow-md p-4">
 <button id="close-drawer" class="mb-4 text-xl">✕</button>
 <ul class={NAV_STYLES.spacing}>
   {
