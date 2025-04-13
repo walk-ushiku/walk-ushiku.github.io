@@ -27,10 +27,12 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Disable Jekyll
+        run: echo > dist/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-
