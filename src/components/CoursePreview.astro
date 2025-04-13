@@ -9,26 +9,32 @@ interface Props {
 
 const { post: { data: post, slug }, asCard = false } = Astro.props
 ---
+<a href={`/course/${slug}`} title={post.title} class="block">
 <div class={`post-preview ${asCard && 'post-preview--card'}`}>
-    <div class="post-preview__date-box">
-
+    <div class="sm:w-16 md:w-20">
         <div class="post-preview__date">
-            <span class="post-preview__date__icon text-5xl">{post.icon}</span>
+            {post.icon && (
+                <img
+                    src={post.icon}
+                    class="post-preview__date__icon block"
+                />
+            )}
         </div>
-
     </div>
     <div class="flex-1">
         <h4 class="post-preview__title dark:text-theme-dark-primary">
-            <a href={`/course/${slug}`} title={post.title}>{post.title}</a>
+            {post.title}
         </h4>
         <p class="post-preview__desc">
             {post.description}
         </p>
     </div>
 </div>
+</a>
+
 <style>
     .post-preview {
-        @apply flex gap-6;
+        @apply flex gap-4;
     }
     .post-preview--card {
         @apply flex flex-col-reverse gap-4 sm:w-72 md:w-60 lg:w-64;
@@ -46,7 +52,7 @@ const { post: { data: post, slug }, asCard = false } = Astro.props
         @apply text-left flex flex-row gap-1
     }
     .post-preview__date__icon {
-        @apply text-6xl font-semibold text-gray-500 dark:text-gray-300;
+        @apply w-20 h-20 rounded-lg object-contain mx-auto    
     }
     .post-preview--card .post-preview__date__day {
         @apply text-4xl

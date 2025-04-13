@@ -3,17 +3,24 @@ import { getMonthName } from '$/utils'
 import { USE_MEDIA_THUMBNAIL } from '$/config'
 const { post } = Astro.props
 ---
+<a href={post.url} title={post.title} class="block">
 <div class="post-preview">
-    <div class="sm:w-20 md:w-32">
+    <div class="sm:w-12 md:w-16">
         <div class="post-preview__date">
-            <span class="post-preview__date__icon text-5xl">{post.icon}</span>
+            {post.icon && (
+                <img 
+                    src={post.icon} 
+                    class="post-preview__date__icon dark:invert block"
+                />
+            )}
         </div>
     </div>
     <div class={`flex-1 ${USE_MEDIA_THUMBNAIL && post.thumbnail ? 'flex flex-row gap-4' : ''}`}>
         { USE_MEDIA_THUMBNAIL  && post.thumbnail && <img class="post-preview__media" src= {post.thumbnail} alt="media thumbnail" />}
         <div class="flex flex-col mb-2">
             <h4 class="post-preview__title dark:text-theme-dark-primary">
-                <a href={post.url} title={post.title} target="_blank">{post.title}</a>
+                <!-- <a href={post.url} title={post.title} target="_blank">{post.title}</a> -->
+                {post.title}
             </h4>
         </div>
         <p class="post-preview__desc">
@@ -21,15 +28,16 @@ const { post } = Astro.props
         </p>
     </div>
 </div>
+</a>
 <style>
     .post-preview {
-        @apply  flex gap-6
+        @apply  flex gap-2
     }
     .post-preview__date {
         @apply flex flex-col w-full text-center
     }
     .post-preview__date__icon {
-        @apply text-6xl font-semibold text-gray-500 dark:text-gray-300
+        @apply w-12 h-12 rounded-lg object-contain mx-auto mt-1
     }
     .post-preview__title {
         @apply text-2xl font-semibold text-theme-primary dark:text-theme-dark-primary /* this doesn't works here */ hover:underline
