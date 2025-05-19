@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import type { CollectionEntry } from 'astro:content';
 import Icon from 'astro-icon';
 import { SITE, USE_POST_IMG_OVERLAY, USE_AUTHOR_CARD, USE_SUBSCRIPTION, USE_VIEW_STATS } from '$/config'
@@ -24,9 +25,14 @@ const { content, meta } = Astro.props
 
 const TITLE = "File:" + content.image.split('/').pop();
 const BASENAME = content.image.split('/').pop();
+
+const posts = await getCollection('spot_note');
+const related = content.related_place
+  ? posts.find(p => p.slug === content.related_place)
+  : null;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="ja">
     <head>
         <BaseHead {...content} title={ TITLE ? `${ SITE.title } | ${content.title}` : SITE.title }/>
     </head>
@@ -63,14 +69,28 @@ const BASENAME = content.image.split('/').pop();
                 {content.contributor}
               </th>
             </tr>
-            <tr class="border-t border-gray-300">
-              <th class="text-right border-r border-gray-300 px-2 py-2 text-theme-primary dark:text-theme-dark-primary">
-                説明
-              </th>
-              <th class="text-left font-normal px-2 py-2">
-                {content.description}
-              </th>
-            </tr>
+            {content.description &&
+              <tr class="border-t border-gray-300">
+                <th class="text-right border-r border-gray-300 px-2 py-2 text-theme-primary dark:text-theme-dark-primary">
+                  説明
+                </th>
+                <th class="text-left font-normal px-2 py-2">
+                  {content.description}
+                </th>
+              </tr>
+            }
+            {related &&
+              <tr class="border-t border-gray-300">
+                <th class="text-right border-r border-gray-300 px-2 py-2 text-theme-primary dark:text-theme-dark-primary">
+                  関連ページ
+                </th>
+                <th class="text-left font-normal px-2 py-2">
+                  <a href={`/spot_note/${related.slug}`} class="underline text-blue-600 hover:text-blue-800">
+                   {related.data.title}
+                  </a>
+                </th>
+              </tr>
+            }
           </thead>
         </table>
         <Prose>

@@ -30,7 +30,10 @@ const photoPagesCollection = defineCollection({
         schema: z.object({
 		image: z.string(),
 		contributor: z.string(),
-		description: z.string(),
+		description: z.string().optional(),
+		related_place: z.string().optional(),
+		lat: z.number().optional(),
+		lng: z.number().optional(),
         }),
 });
 
