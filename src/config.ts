@@ -4,7 +4,7 @@ export const SITE = {
 	// Your site's detail?
 	title: "うしくさんぽノート",
 	name: "うしくさんぽノート",
-	description: "牛久市の観光情報をまとめた非公式サイトです。",
+	description: "有志による非公式サイトです。",
 	url: "https://astro-ink.vercel.app",
 	githubUrl: "https://github.com/one-aalam/astro-ink",
 	listDrafts: true,
