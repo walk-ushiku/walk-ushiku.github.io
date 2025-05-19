@@ -5,11 +5,11 @@ const NAV_ITEMS: NavItems = {
                 path: "/",
                 title: "ホーム",
         },
-        blog: {
-                path: "/blog",
+        spot_note: {
+                path: "/spot_note",
                 title: "観光・グルメ",
                 children: [
-                  { path: "/blog", "title": "リストから探す"},
+                  { path: "/spot_note", "title": "リストから探す"},
                   { path: "/tags", "title": "タグから探す"},
                   { path: "/map", "title": "地図から探す"},
                   { path: "/photos", "title": "写真から探す🚧"},
@@ -19,17 +19,19 @@ const NAV_ITEMS: NavItems = {
                 path: "/course",
                 title: "モデルコース",
         },
-        event: {
-                path: "/events",
-                title: "イベント情報🚧",
+        gallery: {
+                path: "/gallery",
+                title: "ギャラリー",
         },
         media: {
                 path: "/links",
                 title: "リンク集",
         },
         about: {
-                path: "/others",
                 title: "その他",
+                children: [
+                  { path: "/about", "title": "このサイトについて"},
+                ],
         },
 };
 
@@ -37,7 +39,7 @@ export const NAV_STYLES = {
   topLevelText: "text-2xl font-semibold",
   childText: "text-lg font-medium",
   spacing: "space-y-4",
-  itemSpacing: "space-y-2 ml-4 mt-3",
+  itemSpacing: "space-y-2 ml-2 mt-3",
   linkBase: "block hover:underline",
 };
 ---

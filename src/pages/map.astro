@@ -12,10 +12,20 @@ const title = '地図から探す';
 const description = '観光・グルメを地図から探せます';
 
 import MapViewer from '$/components/MapViewer.astro';
+
+const posts = await getCollection('spot_note');
+const places = posts
+  .filter(p => p.data.lat && p.data.lng)
+  .map(p => ({
+    title: p.data.title,
+    lat: p.data.lat,
+    lng: p.data.lng,
+    url: `/spot_note/${p.slug}`,
+  }));
 ---
 <DefaultPageLayout content={{ title, description }}>
 
-    <MapViewer />
+    <MapViewer places={places} />
  
 </DefaultPageLayout>
 

@@ -1,0 +1,108 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Icon from 'astro-icon';
+import { SITE, USE_POST_IMG_OVERLAY, USE_AUTHOR_CARD, USE_SUBSCRIPTION, USE_VIEW_STATS } from '$/config'
+import MainLayout from '$/components/MainLayout.astro'
+import BaseHead from '$/components/BaseHead.astro'
+import Prose from '$/components/Prose.astro'
+import PostStats from '$/components/PostStats.svelte'
+import EditUrl from '$/components/EditLink.astro'
+
+
+interface Props {
+    meta?: {
+        id: string,
+        slug: string,
+        collection: string
+    },
+    content: CollectionEntry<'photo_pages'>['data'],
+    stats?: {
+        views: number
+    }
+}
+const { content, meta } = Astro.props
+
+const TITLE = "File:" + content.image.split('/').pop();
+const BASENAME = content.image.split('/').pop();
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        <BaseHead {...content} title={ TITLE ? `${ SITE.title } | ${content.title}` : SITE.title }/>
+    </head>
+    <MainLayout>
+        <div class="post__header">
+            <h1 class="post__title">{ TITLE }</h1>
+        </div>
+        {
+            content.image ?
+            USE_POST_IMG_OVERLAY ?
+                <div class="img__outer">
+                    <img src={content.image} alt={TITLE} />
+                    <div class="img_gradient"></div>
+                </div><br/>
+                :
+                <img class="img__outer" src={content.image} alt={TITLE} /><br/>
+                : ""
+        }
+        <table class="table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr>
+              <th class="text-right border-r border-gray-300 px-2 py-2 text-theme-primary dark:text-theme-dark-primary">
+                ファイル名
+              </th>
+              <th class="text-left font-normal px-2 py-2">
+                {BASENAME}
+              </th>
+            </tr>
+            <tr class="border-t border-gray-300">
+              <th class="text-right border-r border-gray-300 px-2 py-2 text-theme-primary dark:text-theme-dark-primary">
+                提供者
+              </th>
+              <th class="text-left font-normal px-2 py-2">
+                {content.contributor}
+              </th>
+            </tr>
+            <tr class="border-t border-gray-300">
+              <th class="text-right border-r border-gray-300 px-2 py-2 text-theme-primary dark:text-theme-dark-primary">
+                説明
+              </th>
+              <th class="text-left font-normal px-2 py-2">
+                {content.description}
+              </th>
+            </tr>
+          </thead>
+        </table>
+        <Prose>
+            <slot />
+        </Prose>
+    </MainLayout>
+</html>
+<style>
+    .post__header {
+        @apply py-4 mb-1 text-center md:text-left
+    }
+    .post__title {
+        @apply text-3xl font-extrabold text-theme-primary dark:text-theme-dark-primary
+    }
+    .post__desc {
+        @apply text-gray-500 dark:text-gray-100 flex justify-center text-left md:flex-none md:justify-start
+    }
+
+    .img__outer {
+        @apply relative rounded-lg shadow-xl overflow-hidden
+    }
+    .img_gradient {
+        @apply absolute z-10 w-full bottom-0 left-0 h-full bg-gradient-to-tr from-theme-primary dark:from-theme-dark-primary
+    }
+
+    .subscription-form {
+        @apply w-4/6 mt-2 flex flex-row rounded-lg overflow-hidden shadow-lg
+    }
+    .subscription-form input {
+        @apply flex-grow border-0 text-theme-accent-gray-dark
+    }
+    .subscription-form button, .button {
+        @apply px-4 py-2 uppercase font-bold text-white bg-gradient-to-tr from-theme-primary to-theme-dark-secondary dark:from-theme-dark-secondary dark:to-theme-primary
+    }
+</style>

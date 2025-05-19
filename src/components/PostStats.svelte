@@ -11,7 +11,7 @@
         if(slug && slug.trim() !== '') {
             try {
                 loading = true
-                const resp = await fetch(`/api/blog/views/${slug}.json`)
+                const resp = await fetch(`/api/spot_note/views/${slug}.json`)
                 const stats = await resp.json()
                 views = stats.views
             } catch(e) {

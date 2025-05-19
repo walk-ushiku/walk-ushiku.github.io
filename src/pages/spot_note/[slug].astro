@@ -1,0 +1,47 @@
+---
+export const prerender = true
+
+import { getEntryBySlug, getCollection } from "astro:content";
+import PostLayout from '$/layouts/post.astro';
+import Code from '../../components/Code.astro'
+
+export async function getStaticPaths() {
+    const allPosts = await getCollection('spot_note');
+    return allPosts.map(post => ({
+        params: {
+            slug: post.slug
+        }
+    }))
+}
+
+const { slug } = Astro.params
+const entry = await getEntryBySlug('spot_note', slug!)
+
+const { id, collection, data } = entry
+const { Content } = await entry.render()
+
+import MapViewer from '$/components/MapViewer.astro';
+
+const posts = await getCollection('spot_note');
+const places = posts
+  .filter(p => p.data.lat && p.data.lng)
+  .map(p => ({
+    title: p.data.title,
+    lat: p.data.lat,
+    lng: p.data.lng,
+    url: `/spot_note/${p.slug}`,
+    gmap: p.data.gmap,
+  }));
+---
+<PostLayout meta={{id, collection, slug }} content={data} >
+    <Content components={{
+        code: Code
+    }}/>
+    
+    <MapViewer 
+        places={places}
+        targetUrl={`/spot_note/${slug}`} 
+        size=15
+        height="300px"
+    />
+</PostLayout>

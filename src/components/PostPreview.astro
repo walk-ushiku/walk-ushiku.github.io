@@ -3,18 +3,18 @@ import type { CollectionEntry } from 'astro:content'
 import { getMonthName } from '$/utils'
 
 interface Props {
-    post: CollectionEntry<'blog'>,
+    post: CollectionEntry<'spot_note'>,
     asCard?: boolean
 }
 
 const { post: { data: post, slug }, asCard = false } = Astro.props
 ---
-<a href={`/blog/${slug}`} title={post.title} class="block">
+<a href={`/spot_note/${slug}`} title={post.title} class="block">
 <div class={`post-preview ${asCard && 'post-preview--card'}`}>
     <div class="sm:w-12 md:w-16">
         <div class="post-preview__date">
             <img
-              src={post.icon ?? '/icon/no_image.png'}
+              src={post.icon ?? '/icon/no_image.svg'}
               class={`post-preview__date__icon block ${post.icon ? '' : 'dark:invert'}`}
             />
         </div>

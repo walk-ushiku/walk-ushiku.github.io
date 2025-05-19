@@ -3,25 +3,25 @@
     "title": "牛久市公式サイト",
     "url": "https://www.city.ushiku.lg.jp/",
     "description": "市の公式情報が掲載されています。",
-    "icon": "/icon/link/city_hall.png"
+    "icon": "/icon/link/city_hall.svg"
   },
   {
     "title": "牛久市シティプロモーション", 
     "url": "https://x.com/ushikucitypromo",
     "description": "公式広報のXアカウントです。",
-    "icon": "/icon/link/promotion.png"
+    "icon": "/icon/link/promotion.svg"
   },
   {
     "title": "牛久駅時刻表",
     "url": "https://www.jreast-timetable.jp/timetable/list0222.html",
     "description": "帰りの電車を調べるために。",
-    "icon": "/icon/link/train.png"
+    "icon": "/icon/link/train.svg"
   },
   {
     "title": "かっぱ号", 
     "url": "https://www.city.ushiku.lg.jp/page/page000928.html",
     "description": "牛久市のコミュニティバスです。",
-    "icon": "/icon/link/bus.png"
+    "icon": "/icon/link/bus.svg"
   }
 ]
 

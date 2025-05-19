@@ -3,50 +3,126 @@ export const prerender = true
 
 import { getCollection, getEntryBySlug } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
-import PostPreviewList from '$/components/PostPreviewList.astro'
-import Prose from '$/components/Prose.astro'
-import { Content as AboutAstroInk } from './_astro-ink.md'
+import CategoryOverview from '$/components/CategoryOverview.astro'
 
 
 const title = 'ホーム'
 const description = 'ようこそ！'
-
-import MapViewer from '$/components/MapViewer.astro';
 ---
 <DefaultPageLayout content={{ title, description }} showPageHeader={false}>
-    <div class="hero ">
-        <div class="hero__says">
-            <Prose>
-                <AboutAstroInk/>
-            </Prose>
-        </div>
-    </div>
-    <hr/>
 
-    <MapViewer />
- 
+<section class="category-section">
+  <h2 class="text-3xl font-bold mb-6 text-center">ようこそ！</h2>
+  <h2 class="text-l font-bold mb-6 text-center">有志による牛久観光サイトです。</h2>
+
+  <div class="grid gap-6 grid-cols-2">
+    <!-- 観光・グルメ -->
+    <div class="card">
+      <div class="card-content">
+        <img src="icon/top/spots.svg" class="card__icon" />
+        <h3 class="card_name">観光・グルメ</h3>
+      </div>
+      <div class="grid grid-cols-2 gap-2 mt-2 text-sm">
+        <a class="subbtn" href="/spot_note">リスト</a>
+        <a class="subbtn" href="/tags">タグ</a>
+        <a class="subbtn" href="/map">地図</a>
+        <span class="subbtn opacity-50 cursor-default">準備中</span>
+      </div>
+    </div>
+
+    <!-- モデルコース -->
+    <a href="/course" class="card block no-underline">
+      <div class="card-content">
+        <img src="icon/top/course.svg" class="card__icon" />
+        <h3 class="card_name">モデルコース</h3>
+        <p class="sub_sentence">おすすめルートを紹介。<br>牛久の魅力を巡ろう！</p>
+      </div>
+      <div class="linkbtn mt-3">見る →</div>
+    </a>
+
+    <!-- 旅のTips -->
+    <a href="/tips" class="card opacity-50">
+      <div class="card-content">
+        <img src="icon/top/tips.svg" class="card__icon" />
+        <h3 class="card_name">豆知識</h3>
+        <p class="sub_sentence">牛久に関する豆知識を紹介。</p>
+      </div>
+      <div class="linkbtn mt-3">見る →</div>
+    </a>
+
+    <!-- ギャラリー -->
+    <a href="/gallery" class="card">
+      <div class="card-content">
+        <img src="icon/top/gallarey.svg" class="card__icon" />
+        <h3 class="card_name">ギャラリー</h3>
+        <p class="sub_sentence">日常・景色写真</p>
+      </div>
+      <div class="linkbtn mt-3">見る →</div>
+    </a>
+
+    <!-- リンク集 -->
+    <a href="/links" class="card">
+      <div class="card-content">
+        <img src="icon/top/links.svg" class="card__icon" />
+        <h3 class="card_name">リンク集</h3>
+        <p class="sub_sentence">外部サイトまとめ</p>
+      </div>
+      <div class="linkbtn mt-3">見る →</div>
+    </a>
+
+    <!-- その他 -->
+    <a href="/about" class="card">
+      <div class="card-content">
+        <img src="icon/top/information.svg" class="card__icon" />
+        <h3 class="card_name">その他</h3>
+        <p class="sub_sentence">このサイトについて。</p>
+      </div>
+      <div class="linkbtn mt-3">見る →</div>
+    </a>
+
+  </div>
+</section>
+
 </DefaultPageLayout>
 
 <style>
-    .hero {
-        @apply flex flex-col md:flex-row gap-8 w-full transition-all pb-4
-    }
-    .hero__face {
-        @apply flex md:flex-none justify-center
-    }
-    .hero__says {
-        @apply flex-1 text-center md:text-left
-    }
-    .author-card {
-        @apply  h-48 w-48 md:h-56 bg-theme-primary dark:bg-theme-dark-primary rounded-full md:rounded-md shadow-lg
-    }
-    .author-card img {
-        @apply rounded-full h-48 w-48 md:h-56
-    }
-    .page__actions {
-        @apply flex justify-center md:justify-end py-6
-    }
-    .action__go-to-blog {
-        @apply py-4 hover:underline
-    }
+  .category-section {
+    @apply py-4 px-1;
+  }
+
+  .grid-wrapper {
+    @apply grid grid-cols-2 gap-1;
+  }
+
+  .card {
+    @apply justify-between p-3 
+        border border-gray-300 dark:border-gray-600 rounded-md 
+        bg-gray-200 dark:bg-gray-700 
+        flex flex-col items-center text-center;
+  }
+
+  .card__icon {
+    @apply text-6xl mb-1 h-24 mx-auto dark:invert;
+  }
+
+  .subbtn-row {
+    @apply grid grid-cols-2 gap-1 w-full mt-2;
+  }
+
+  .subbtn {
+    @apply w-full bg-purple-600 text-white text-base rounded px-[0.25rem] py-0.5 text-center hover:bg-purple-700;
+  }
+
+  .linkbtn {
+    @apply text-base mt-auto self-end text-purple-500 hover:underline block mt-2 text-sm;
+  }
+
+  .card_name {
+    @apply text-xl font-semibold;
+  }
+
+  .sub_sentence {
+    @apply text-xs py-1;
+  }
 </style>
+

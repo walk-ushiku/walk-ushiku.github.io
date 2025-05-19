@@ -2,7 +2,7 @@ import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import { SITE } from "../config";
 
-const allPosts = await getCollection("blog");
+const allPosts = await getCollection("spot_note");
 const sortedPosts = Object.values(allPosts).sort(
 	(a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf(),
 );
@@ -22,7 +22,7 @@ export const get = () =>
 		items: sortedPosts.map((item) => ({
 			title: item.data.title,
 			description: item.data.description,
-			link: `blog/${item.slug}`,
+			link: `spot_note/${item.slug}`,
 			pubDate: new Date(item.data.date),
 		})),
 		// (optional) inject custom xml
