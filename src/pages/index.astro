@@ -7,13 +7,20 @@ import CategoryOverview from '$/components/CategoryOverview.astro'
 
 
 const title = 'ホーム'
-const description = 'ようこそ！'
+const description = '有志による非公式の牛久観光サイトです'
 ---
 <DefaultPageLayout content={{ title, description }} showPageHeader={false}>
 
+<section class="hero-section">
+  <div class="hero-bg-overlay absolute inset-0 z-0"></div>
+
+  <div class="hero-overlay">
+    <h1 class="hero-title">ホーム</h1>
+    <p class="hero-subtitle">牛久観光情報のサイトです。<br>有志が非公式に作成しました。</p>
+  </div>
+</section>
+
 <section class="category-section">
-  <h2 class="text-3xl font-bold mb-6 text-center">ようこそ！</h2>
-  <h2 class="text-l font-bold mb-6 text-center">有志による牛久観光サイトです</h2>
 
   <div class="grid gap-6 grid-cols-2">
     <!-- 観光・グルメ -->
@@ -86,8 +93,32 @@ const description = 'ようこそ！'
 </DefaultPageLayout>
 
 <style>
+  .hero-section {
+    @apply relative w-[98%] mx-auto aspect-[16/6] mt-3 mb-3 rounded-lg overflow-hidden;
+    background-image: url('/images/ushiku_station_east.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .hero-bg-overlay {
+    @apply bg-white opacity-60 dark:bg-black dark:opacity-60;
+  }
+
+  .hero-overlay {
+    @apply absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4;
+    z-index: 10;
+  }
+  
+  .hero-title {
+    @apply text-5xl font-bold sm:text-5xl text-black dark:text-white;
+  }
+  
+  .hero-subtitle {
+    @apply text-base mt-2 text-black dark:text-white
+  }
+
   .category-section {
-    @apply py-4 px-1;
+    @apply mb-4 mt-3 px-1;
   }
 
   .grid-wrapper {
