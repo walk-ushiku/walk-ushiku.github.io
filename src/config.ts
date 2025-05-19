@@ -25,7 +25,7 @@ export const SITE = {
 };
 
 // Ink - Theme configuration
-export const PAGE_SIZE = 50;
+export const PAGE_SIZE = 20;
 export const USE_POST_IMG_OVERLAY = false;
 export const USE_MEDIA_THUMBNAIL = true;
 
