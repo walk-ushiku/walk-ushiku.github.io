@@ -2,9 +2,9 @@ backend:
   name: github
   branch: main
   publish_mode: editorial_workflow
-  repo: one-aalam/astro-ink # change this to your repo
-  site_domain: astro-ink.vercel.app # change this to your domain
-  base_url: https://astro-ink.vercel.app # change this to your prod URL
+  repo: walk-ushiku/walk-ushiku.github.io 
+  site_domain: walk-ushiku.github.io
+  base_url: https://walk-ushiku.github.io/
   auth_scope: repo
   auth_endpoint: oauth
   display_url: https://astro-ink.vercel.app

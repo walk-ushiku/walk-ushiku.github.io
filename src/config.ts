@@ -5,11 +5,11 @@ export const SITE = {
 	title: "うしくさんぽノート",
 	name: "うしくさんぽノート",
 	description: "有志による非公式の牛久市観光サイトです。",
-	url: "https://astro-ink.vercel.app",
+	url: "https://walk-ushiku.github.io/",
 	githubUrl: "https://github.com/walk-ushiku/walk-ushiku.github.io",
 	listDrafts: true,
 	image:
-		"https://raw.githubusercontent.com/one-aalam/astro-ink/main/public/astro-banner.png",
+		"https://walk-ushiku.github.io/favicon/favicon-256x256.png",
 	// YT video channel Id (used in media.astro)
 	ytChannelId: "",
 	// Optional, user/author settings (example)
