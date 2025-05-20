@@ -23,6 +23,7 @@ const courseCollection = defineCollection({
                 description: z.string(),
                 image: z.string().optional(),
                 icon: z.string(),
+		id: z.number(),
         }),
 });
 

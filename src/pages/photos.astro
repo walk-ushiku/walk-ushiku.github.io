@@ -1,19 +1,77 @@
 ---
-export const prerender = true
+export const prerender = true;
 
-import { getCollection, getEntryBySlug } from 'astro:content'
-import DefaultPageLayout from '$/layouts/default.astro'
-import PostPreviewList from '$/components/PostPreviewList.astro'
-import Prose from '$/components/Prose.astro'
-import { Content as AboutAstroInk } from './_astro-ink.md'
-
+import { getCollection } from 'astro:content';
+import DefaultPageLayout from '$/layouts/default.astro';
 
 const title = '写真から探す';
-const description = '写真から観光・グルメを探せます';
----
-<DefaultPageLayout content={{ title, description }}>
+const description = '観光地情報の紐づいた写真がランダムに表示されます。リロードすると画像が変わります。';
 
-    工事中です...
- 
+const allPhotos = await getCollection('photo_pages');
+const filteredPhotos = allPhotos
+  .filter(p => p.data.related_place) // related_placeがあるもののみ
+  .map(p => ({
+    slug: p.slug,
+    image: p.data.image,
+    title: p.data.title,
+    related_place: p.data.related_place
+  }));
+---
+
+<DefaultPageLayout content={{ title, description }}>
+  <section id="photo-finder" class="gallery-grid"></section>
+
+  <!-- JSONデータ埋め込み -->
+  <script
+    type="application/json"
+    is:inline
+    set:html={JSON.stringify(filteredPhotos)}
+    id="related-photo-data">
+  </script>
+
+  <script type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+      const raw = document.getElementById("related-photo-data")?.textContent;
+      if (!raw) {
+        console.error("related-photo-data not found or empty");
+        return;
+      }
+
+      const photos = JSON.parse(raw);
+
+      // シャッフル関数
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      const randomPhotos = shuffle(photos).slice(0, 8);
+      const container = document.getElementById("photo-finder");
+
+      randomPhotos.forEach(photo => {
+        const a = document.createElement("a");
+        // a.href = `/spot_note/${photo.related_place}`;
+        a.href = `/photo_pages/${photo.slug}`;
+        a.className = "block overflow-hidden rounded shadow hover:shadow-lg transition aspect-[3/2]";
+
+        const img = document.createElement("img");
+        img.src = photo.image;
+        img.alt = photo.title || "写真";
+        img.className = "w-full h-full object-cover";
+
+        a.appendChild(img);
+        container.appendChild(a);
+      });
+    });
+  </script>
+
+  <style>
+    .gallery-grid {
+      @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4;
+    }
+  </style>
 </DefaultPageLayout>
 

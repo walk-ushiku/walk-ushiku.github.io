@@ -3,7 +3,6 @@ export const prerender = true
 
 import { getCollection, getEntryBySlug } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
-import CategoryOverview from '$/components/CategoryOverview.astro'
 
 
 const title = 'ホーム'
@@ -33,7 +32,7 @@ const description = '有志による非公式の牛久観光サイトです'
         <a class="subbtn" href="/spot_note">リスト</a>
         <a class="subbtn" href="/tags">タグ</a>
         <a class="subbtn" href="/map">地図</a>
-        <span class="subbtn opacity-50 cursor-default">準備中</span>
+        <a class="subbtn" href="/photos">写真</a>
       </div>
     </div>
 
@@ -62,7 +61,7 @@ const description = '有志による非公式の牛久観光サイトです'
       <div class="card-content">
         <img src="icon/top/gallarey.svg" class="card__icon" />
         <h3 class="card_name">ギャラリー</h3>
-        <p class="sub_sentence">日常・景色写真</p>
+        <p class="sub_sentence">写真で牛久を感じよう！</p>
       </div>
       <div class="linkbtn mt-3">見る →</div>
     </a>
