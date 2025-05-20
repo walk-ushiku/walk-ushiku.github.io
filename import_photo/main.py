@@ -95,7 +95,7 @@ for user_dir in input_root.iterdir():
     print("user:", user)
 
     for img_path in tqdm(list(user_dir.iterdir())):
-        if img_path.suffix.lower() not in [".jpg", ".jpeg", ".png"]:
+        if img_path.suffix.lower() not in [".jpg", ".jpeg", ".png", ".jpg_large", ".jfif"]:  
             continue
 
         original_name = img_path.name
