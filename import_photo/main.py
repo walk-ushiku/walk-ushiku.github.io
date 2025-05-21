@@ -87,6 +87,54 @@ def create_mdx(filename_base, image_ext, contributor, related_place, lat, lon):
 
     print(f"mdx生成完了: {mdx_path}")
 
+def get_img_items(user_dir):
+    valid_exts = [".jpg", ".jpeg", ".png", ".jpg_large", ".jfif"]
+    contributor = user_dir.name
+    items = []
+
+    for entry in user_dir.iterdir():
+        if entry.is_file():
+            img_path = entry
+            if img_path.suffix.lower() not in valid_exts:
+                continue
+
+            base_name = img_path.stem
+            new_name, related_place = parse_filename(base_name)
+            output_img_path = output_image_dir / f"{new_name}.{output_ext}"
+
+            items.append({
+                "img_path": img_path,
+                "output_img_path": output_img_path,
+                "new_name": new_name,
+                "related_place": related_place,
+                "contributor": contributor,
+            })
+
+        elif entry.is_dir():
+            related_place = entry.name
+            if related_place.lower() in ["null", "_", "none"]:
+                related_place = None
+
+            for img_path in entry.iterdir():
+                if not img_path.is_file() or img_path.suffix.lower() not in valid_exts:
+                    continue
+
+                base_name = img_path.stem
+                joined_name = base_name if related_place is None else f"{related_place}-{base_name}"
+                new_name, _ = parse_filename(joined_name)
+                output_img_path = output_image_dir / f"{new_name}.{output_ext}"
+
+                items.append({
+                    "img_path": img_path,
+                    "output_img_path": output_img_path,
+                    "new_name": new_name,
+                    "related_place": related_place,
+                    "contributor": contributor,
+                })
+
+    return items
+
+
 # メイン処理
 for user_dir in input_root.iterdir():
     if not user_dir.is_dir():
@@ -94,13 +142,16 @@ for user_dir in input_root.iterdir():
     user = user_dir.name
     print("user:", user)
 
-    for img_path in tqdm(list(user_dir.iterdir())):
-        if img_path.suffix.lower() not in [".jpg", ".jpeg", ".png", ".jpg_large", ".jfif"]:  
-            continue
+    img_items = get_img_items(user_dir)
 
-        original_name = img_path.name
-        base_name = img_path.stem
-        new_name, related_place = parse_filename(base_name)
+    for img_item in tqdm(img_items):
+        # 変数を読み込み
+        img_path = img_item["img_path"]
+        output_img_path = img_item["output_img_path"]
+        new_name = img_item["new_name"]
+        related_place = img_item.get("related_place", None)
+        assert user == img_item["contributor"]
+
         output_filename = f"{new_name}.{output_ext}"
 
         # 画像出力先
