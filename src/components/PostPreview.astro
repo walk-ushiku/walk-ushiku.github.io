@@ -11,7 +11,7 @@ const { post: { data: post, slug }, asCard = false } = Astro.props
 ---
 <a href={`/spot_note/${slug}`} title={post.title} class="block">
 <div class={`post-preview ${asCard && 'post-preview--card'}`}>
-    <div class="sm:w-12 md:w-16">
+    <div class="w-14 mr-1">
         <div class="post-preview__date">
             <img
               src={post.icon ?? '/icon/no_image.svg'}
@@ -48,7 +48,7 @@ const { post: { data: post, slug }, asCard = false } = Astro.props
         @apply text-left flex flex-row gap-1
     }
     .post-preview__date__icon {
-        @apply w-12 h-12 rounded-lg object-contain mx-auto mt-1
+        @apply w-14 h-14 rounded-lg object-contain mx-auto mt-2
     }
     .post-preview--card .post-preview__date__day {
         @apply text-4xl
@@ -57,7 +57,7 @@ const { post: { data: post, slug }, asCard = false } = Astro.props
         @apply text-gray-400;
     }
     .post-preview__title {
-        @apply text-2xl font-semibold text-theme-primary dark:text-theme-dark-primary /* this doesn't works here */ hover:underline mb-2;
+        @apply text-2xl font-semibold text-theme-primary dark:text-theme-dark-primary /* this doesn't works here */ hover:underline mb-[0.5];
     }
     .post-preview__desc {
         @apply text-lg leading-6 line-clamp-3 dark:text-white hyphens-auto;
