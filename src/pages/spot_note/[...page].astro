@@ -12,7 +12,7 @@ let description = '観光・グルメを一覧形式で探せます'
 
 export async function getStaticPaths({ paginate }) {
   const allPosts = await getCollection('spot_note');
-  const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+  const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
 
     return paginate(sortedPosts, {
       pageSize: PAGE_SIZE
