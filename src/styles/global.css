@@ -80,3 +80,32 @@ html.dark {
 	--astro-code-token-punctuation: #c9d1d9;
 	--astro-code-token-link: #000012;
 }
+
+.prose a {
+  @apply text-purple-700 hover:text-purple-900 dark:text-purple-300 hover:dark:text-purple-100 underline; 
+}
+
+.prose h1 + h2 {
+  margin-top: 0.5rem !important;
+}
+
+.prose ul {
+  margin-top: 0.25rem;
+}
+
+.prose ul > li,
+.prose ol > li {
+  margin-top: 0.25em; 
+  margin-bottom: 0.2em;
+  padding-left: 0.2rem; 
+}
+
+.prose li > ul {
+  margin-top: 0.05rem;
+}
+
+.prose li > ul,
+.prose li > ol {
+  padding-left: 1rem;
+}
+

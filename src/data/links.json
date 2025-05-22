@@ -7,19 +7,25 @@
   },
   {
     "title": "牛久市シティプロモーション", 
-    "url": "https://x.com/ushikucitypromo",
-    "description": "公式広報のXアカウントです。",
+    "url": "https://www.city.ushiku.lg.jp/page/dir007585.html",
+    "description": "市公式の広報サイトです。",
     "icon": "/icon/link/promotion.svg"
+  },
+  {
+    "title": "うしく広報大使の部屋", 
+    "url": "https://www.city.ushiku.lg.jp/page/dir017676.html",
+    "description": "鬼塚姉妹が牛久コラボ情報を紹介してくれます。",
+    "icon": "/icon/link/onitsuka.svg"
   },
   {
     "title": "牛久駅時刻表",
     "url": "https://www.jreast-timetable.jp/timetable/list0222.html",
-    "description": "帰りの電車を調べるために。",
+    "description": "帰りの電車の時刻表を調べましょう。",
     "icon": "/icon/link/train.svg"
   },
   {
-    "title": "かっぱ号", 
-    "url": "https://www.city.ushiku.lg.jp/page/page000928.html",
+    "title": "かっぱ号 路線図・時刻表 (PDF)",
+    "url": "https://www.city.ushiku.lg.jp/data/doc/1742170875_doc_272_0.pdf",
     "description": "牛久市のコミュニティバスです。",
     "icon": "/icon/link/bus.svg"
   }

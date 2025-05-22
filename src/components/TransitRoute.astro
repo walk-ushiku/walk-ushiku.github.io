@@ -1,0 +1,18 @@
+---
+const { icon, detail } = Astro.props;
+
+const icons = {
+  walk: '🚶',
+  bus: '🚌',
+  train: '🚃',
+};
+---
+
+<div class="relative flex items-start gap-2 text-base text-gray-600 ml-14 my-2 pl-4 min-h-[1.5rem]">
+  <!-- 縦線 -->
+  ｜
+  
+  <!-- コンテンツ -->
+  <span>{icons[icon] || ''}</span>
+  <span>{detail}</span>
+</div>

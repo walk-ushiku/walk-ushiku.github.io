@@ -58,7 +58,7 @@ module.exports = {
                         },
                         h2: {
                             color: colors.dark.secondary,
-                            marginTop: '0.5rem',
+                            marginTop: '1.5rem',
                             marginBottom: '0.5rem',
                         },
                         h3: {
