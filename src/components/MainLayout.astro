@@ -18,6 +18,42 @@ import SearchModal from './SearchModal.svelte'
     </Portal>
 </BaseLayout>
 
+<div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background-color:rgba(0,0,0,0.9); justify-content:center; align-items:center; flex-direction: column; z-index:9999;">
+  <img id="lightbox-img" src="" style="max-width:90%; max-height:90%;" />
+  <a id="lightbox-link" href="#" target="_blank" style="margin-top: 1rem; color: white; text-decoration: underline;">画像ページを開く</a>
+  <span id="lightbox-close" style="position:absolute; top:1rem; right:1.5rem; font-size:2rem; color:white; cursor:pointer;">×</span>
+</div>
+
+<script is:client>
+  document.addEventListener("DOMContentLoaded", () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxLink = document.getElementById('lightbox-link');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    // すべての .linked-image にイベントを登録
+    document.querySelectorAll('.linked-image').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.dataset.src;
+        lightboxLink.href = img.dataset.href;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    // 閉じる
+    lightboxClose.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    // 背景クリックでも閉じる
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+      }
+    });
+  });
+</script>
+
 <style>
     .content {
         min-height: 580px

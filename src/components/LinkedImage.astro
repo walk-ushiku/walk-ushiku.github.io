@@ -9,6 +9,8 @@ const {
   focus = '',       // object-position
 } = Astro.props;
 
+const imgId = src.split('/').pop().replace(/\.[^/.]+$/, '');
+
 const widthPercent = Number(size);
 const figureStyle = aspectRatio
   ? `width: ${widthPercent}%; aspect-ratio: ${aspectRatio};`
@@ -19,12 +21,21 @@ const imgStyle = aspectRatio
   : `width: 100%; height: auto; display: block;`;
 ---
 
-<a href={href} style="display: block;">
+<div style="display: block;">
   <figure class="mt-4 mb-4" style={figureStyle}>
-    <img loading="lazy" src={src} alt={alt} style={imgStyle} />
+    <img
+       id={imgId}
+       loading="lazy"
+       class="linked-image"
+       src={src}
+       alt={alt}
+       style={imgStyle}
+       data-src={src}
+       data-href={href}
+    />
   </figure>
-  {caption && (
-    <p style="margin-top: 0.5rem; font-size: 0.875rem;">{caption}</p>
-  )}
-</a>
+{caption && (
+  <p style="text-align: center; margin-top: 0.5rem; font-size: 0.875rem;">{caption}</p>
+)}
+</div>
 
