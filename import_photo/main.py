@@ -59,7 +59,7 @@ def create_mdx(filename_base, image_ext, contributor, related_place, lat, lon):
     image_filename = f"{filename_base}.{image_ext}"
 
     # テンプレート読み込み
-    text = template_text.replace("HOGEHOGE", image_filename)
+    text = template_text.replace("FILE_NAME", image_filename)
     text = text.replace("調査中", contributor)
 
     # フロントマターを分解
