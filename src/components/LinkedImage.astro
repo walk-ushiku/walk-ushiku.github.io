@@ -10,7 +10,7 @@ const {
 } = Astro.props;
 
 const src = '/images/photos/' + basename + '.' + ext
-const href = '/photo_pages/' + basename
+const href = '/photo_pages/' + basename.toLowerCase()
 
 const widthPercent = Number(size);
 const figureStyle = aspectRatio

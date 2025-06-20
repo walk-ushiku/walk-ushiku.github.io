@@ -2,7 +2,7 @@
 export const prerender = true
 
 import { getEntryBySlug, getCollection } from "astro:content";
-import CourseLayout from '$/layouts/course.astro';
+import NoteLayout from '$/layouts/note.astro';
 import Code from '../../components/Code.astro'
 
 export async function getStaticPaths() {
@@ -20,8 +20,8 @@ const entry = await getEntryBySlug('note', slug!)
 const { id, collection, data } = entry
 const { Content } = await entry.render()
 ---
-<CourseLayout meta={{id, collection, slug }} content={data} >
+<NoteLayout meta={{id, collection, slug }} content={data} >
     <Content components={{
         code: Code
     }}/>
-</CourseLayout>
+</NoteLayout>
