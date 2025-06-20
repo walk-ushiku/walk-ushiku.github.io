@@ -28,3 +28,5 @@ netlify
 # others
 *.swp
 import_photo/raw_photo/
+public/images/main.py
+src/content/main.py

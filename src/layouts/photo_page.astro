@@ -61,14 +61,26 @@ const related = content.related_place
                 {BASENAME}
               </th>
             </tr>
-            <tr class="border-t border-gray-300">
-              <th class="text-right border-r border-gray-300 px-2 py-2 text-theme-primary dark:text-theme-dark-primary">
-                提供者
-              </th>
-              <th class="text-left font-normal px-2 py-2">
-                {content.contributor}
-              </th>
-            </tr>
+            {content.contributor_id ?
+              <tr class="border-t border-gray-300">
+                <th class="text-right border-r border-gray-300 px-2 py-2 text-theme-primary dark:text-theme-dark-primary">
+                  提供者
+                </th>
+                <th class="text-left font-normal px-2 py-2">
+                  <a href={`/user/${content.contributor_id}`} class="underline text-blue-600 hover:text-blue-800">
+                   {content.contributor}
+                  </a>
+                </th>
+              </tr> :
+              <tr class="border-t border-gray-300">
+                <th class="text-right border-r border-gray-300 px-2 py-2 text-theme-primary dark:text-theme-dark-primary">
+                  提供者
+                </th>
+                <th class="text-left font-normal px-2 py-2">
+                  {content.contributor}
+                </th>
+              </tr>
+            }
             {content.description &&
               <tr class="border-t border-gray-300">
                 <th class="text-right border-r border-gray-300 px-2 py-2 text-theme-primary dark:text-theme-dark-primary">

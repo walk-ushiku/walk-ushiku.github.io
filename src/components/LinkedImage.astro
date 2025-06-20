@@ -1,7 +1,7 @@
 ---
 const {
-  src,
-  href = '#',
+  basename,
+  ext = 'jpg',
   size = 100,
   alt = '',
   caption = '',
@@ -9,7 +9,8 @@ const {
   focus = '',       // object-position
 } = Astro.props;
 
-const imgId = src.split('/').pop().replace(/\.[^/.]+$/, '');
+const src = '/images/photos/' + basename + '.' + ext
+const href = '/photo_pages/' + basename
 
 const widthPercent = Number(size);
 const figureStyle = aspectRatio
@@ -24,7 +25,6 @@ const imgStyle = aspectRatio
 <div style="display: block;">
   <figure class="mt-4 mb-4" style={figureStyle}>
     <img
-       id={imgId}
        loading="lazy"
        class="linked-image"
        src={src}
