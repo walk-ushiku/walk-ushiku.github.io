@@ -35,7 +35,9 @@ export default defineConfig( /** @type {import('astro').AstroUserConfig} */{
     tailwind({
       applyBaseStyles: false,
     }), 
-    sitemap()
+    sitemap({
+      entryLimite: 10000,
+    })
     // decapCmsOauth()
   ],
   vite: {
