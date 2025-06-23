@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /photo_pages/
 
 Sitemap: https://walk-ushiku.github.io/sitemap-index.xml
