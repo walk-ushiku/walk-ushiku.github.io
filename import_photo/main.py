@@ -5,6 +5,15 @@ from PIL import Image
 from tqdm import tqdm
 import re
 
+user_dict = {
+    "ナト": "nato_blooming",
+    "はみゅ": "hamyu044",
+    "地底人かきたま": "poketc_meganest",
+    "ボケ人間ステークス": "sa_16807",
+    "吹雪": "hubuki_ma36s",
+    "こめつぶ": "aqours_forever_",
+}
+
 input_root = Path("./raw_photo")
 output_image_dir = Path("../public/images/photos")
 output_mdx_dir = Path("../src/content/photo_pages/")
@@ -52,14 +61,17 @@ def convert_image(input_path, output_path):
         output_path.parent.mkdir(parents=True, exist_ok=True)
         resized_img.save(output_path, quality=70, optimize=True)
 
-def create_mdx(filename_base, image_ext, contributor, related_place, lat, lon):
-    mdx_path = output_mdx_dir / f"{filename_base}.mdx"
+def create_mdx(filename_base, image_ext, contributor, contributor_id, related_place, lat, lon):
+    mdx_path = output_mdx_dir / contributor_id / f"{filename_base}.mdx"
     mdx_path.parent.mkdir(parents=True, exist_ok=True)
 
     image_filename = f"{filename_base}.{image_ext}"
 
     # テンプレート読み込み
-    text = template_text.replace("FILE_NAME", image_filename)
+    text = template_text.replace(
+                "FILE_NAME", 
+                os.path.join(contributor_id, image_filename)
+    )
     text = text.replace("調査中", contributor)
 
     # フロントマターを分解
@@ -77,6 +89,8 @@ def create_mdx(filename_base, image_ext, contributor, related_place, lat, lon):
     if lat and lon:
         lines.append(f"lat: {lat}")
         lines.append(f"lng: {lon}")
+    if contributor_id:
+        lines.append(f"contributor_id: {contributor_id}")
 
     # 再構築
     new_frontmatter = "\n".join(lines)
@@ -134,13 +148,17 @@ def get_img_items(user_dir):
 
     return items
 
+debug = False
 
 # メイン処理
 for user_dir in input_root.iterdir():
     if not user_dir.is_dir():
         continue
     user = user_dir.name
+    assert user in user_dict, f"Unknown user: {user}"
+    user_id = user_dict[user]
     print("user:", user)
+    print("id:", user_id)
 
     img_items = get_img_items(user_dir)
 
@@ -152,20 +170,28 @@ for user_dir in input_root.iterdir():
         related_place = img_item.get("related_place", None)
         assert user == img_item["contributor"]
 
-        output_filename = f"{new_name}.{output_ext}"
+        output_filename = os.path.join(
+                user_id,
+                f"{new_name}.{output_ext}"
+        )
 
         # 画像出力先
         output_img_path = output_image_dir / output_filename
         output_img_path.parent.mkdir(parents=True, exist_ok=True)
 
         # ダウンサンプリング
-        convert_image(img_path, output_img_path)
+        if not debug:
+            convert_image(img_path, output_img_path)
+        else:
+            print("input: ", img_path)
+            print("output:", output_img_path)
 
         # EXIF GPS抽出
         lat, lon = get_gps_info(img_path)
 
         # mdx作成
-        create_mdx(new_name, output_ext, user, related_place, lat, lon)
+        if not debug:
+            create_mdx(new_name, output_ext, user, user_id, related_place, lat, lon)
 
 print("すべて完了！")
 
