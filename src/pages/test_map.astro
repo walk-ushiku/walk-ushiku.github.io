@@ -1,0 +1,55 @@
+---
+export const prerender = true
+
+import { getCollection, getEntryBySlug } from 'astro:content'
+import DefaultPageLayout from '$/layouts/default.astro'
+import PostPreviewList from '$/components/PostPreviewList.astro'
+import Prose from '$/components/Prose.astro'
+import { Content as AboutAstroInk } from './_astro-ink.md'
+
+
+const title = '（開発中）写真付き地図';
+const description = '観光・グルメを写真付き地図から探せます';
+
+import MapViewer from '$/components/PhotoMapViewer.astro';
+
+const posts = await getCollection('spot_note');
+const places = posts
+  .filter(p => p.data.lat && p.data.lng)
+  .map(p => ({
+    title: p.data.title,
+    lat: p.data.lat,
+    lng: p.data.lng,
+    icon: p.data.icon ? p.data.icon : 'undefined',
+    url: `/spot_note/${p.slug}`,
+  }));
+---
+<DefaultPageLayout content={{ title, description }}>
+
+    <MapViewer places={places} />
+ 
+</DefaultPageLayout>
+
+<style>
+    .hero {
+        @apply flex flex-col md:flex-row gap-8 w-full transition-all pb-4
+    }
+    .hero__face {
+        @apply flex md:flex-none justify-center
+    }
+    .hero__says {
+        @apply flex-1 text-center md:text-left
+    }
+    .author-card {
+        @apply  h-48 w-48 md:h-56 bg-theme-primary dark:bg-theme-dark-primary rounded-full md:rounded-md shadow-lg
+    }
+    .author-card img {
+        @apply rounded-full h-48 w-48 md:h-56
+    }
+    .page__actions {
+        @apply flex justify-center md:justify-end py-6
+    }
+    .action__go-to-blog {
+        @apply py-4 hover:underline
+    }
+</style>
