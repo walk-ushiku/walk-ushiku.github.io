@@ -5,16 +5,9 @@ from PIL import Image
 from tqdm import tqdm
 import re
 
-user_dict = {
-    "ナト": "nato_blooming",
-    "はみゅ": "hamyu044",
-    "地底人かきたま": "poketc_meganest",
-    "ボケ人間ステークス": "sa_16807",
-    "吹雪": "hubuki_ma36s",
-    "こめつぶ": "aqours_forever_",
-}
+from config import use_dict
 
-input_root = Path("./raw_photo")
+input_root = Path("./named_photo")
 output_image_dir = Path("../public/images/photos")
 output_mdx_dir = Path("../src/content/photo_pages/")
 template_path = Path("template.mdx")

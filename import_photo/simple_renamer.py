@@ -1,9 +1,10 @@
-
 import os
 import shutil
 import difflib
 from tkinter import *
 from PIL import Image, ImageTk
+
+from config import user_dict
 
 max_size = (600, 600)
 window_size = (800, 800)
@@ -17,22 +18,6 @@ def resize_by_longest_edge(img, max_length):
         scale = max_length / float(h)
     new_size = (int(w * scale), int(h * scale))
     return img.resize(new_size, Image.LANCZOS)
-
-def set_placeholder(entry, placeholder_text):
-    def on_focus_in(event):
-        if entry.get() == placeholder_text:
-            entry.delete(0, END)
-            entry.config(fg='black')
-
-    def on_focus_out(event):
-        if not entry.get():
-            entry.insert(0, placeholder_text)
-            entry.config(fg='gray')
-
-    entry.insert(0, placeholder_text)
-    entry.config(fg='gray')
-    entry.bind("<FocusIn>", on_focus_in)
-    entry.bind("<FocusOut>", on_focus_out)
 
 def gather_target_files(base_folder="raw_photo"):
     target_files = []
@@ -98,12 +83,12 @@ def main(file_list):
             return
 
         raw_input = entry.get().strip()
-        if not raw_input or raw_input == "spot_name-photo_name":
-            print("スキップ：有効な名前を入力してください")
+        if not raw_input:
+            print("スキップ：名前を入力してください")
             return
 
         if raw_input.count("-") > 1:
-            print("⚠ エラー：'-'が2個以上含まれています。形式は spot-name で！")
+            print("⚠ エラー：'-'が2個以上含まれています。形式は spot-photo です")
             return
 
         if raw_input.count("-") == 1:
@@ -117,18 +102,31 @@ def main(file_list):
                     print("👉 該当する候補は見つかりませんでした")
                 return
 
+        # 重複チェック
+        public_img_path = os.path.join("../public/images/photos", user_dict[user], raw_input + ".jpg")
+        if os.path.exists(public_img_path):
+            print(f"❌ エラー：すでに画像が存在します: {public_img_path}")
+
+            existing_files = os.listdir(os.path.join("../public/images/photos", user_dict[user]))
+            png_files = [f.removesuffix(".jpg") for f in existing_files if f.endswith(".jpg")]
+
+            suggestions = difflib.get_close_matches(raw_input, png_files, n=5, cutoff=0.7)
+            if suggestions:
+                print("🔍 似たファイル名:", ", ".join(suggestions))
+            return
+
         new_folder = os.path.join("named_photo", user)
         os.makedirs(new_folder, exist_ok=True)
         new_path = os.path.join(new_folder, raw_input + ext)
 
         if os.path.exists(new_path):
-            print(f"⚠ Warning: 既に存在します: {new_path}")
+            print(f"⚠ Warning: すでに存在します: {new_path}")
             return
 
         print("✅ copy:", old_path, "->", new_path)
         shutil.copy2(old_path, new_path)
 
-        # 処理済みリストに記録
+        # 処理済みに記録
         processed_set.add(old_path)
         with open(processed_file, "a", encoding="utf-8") as f:
             f.write(old_path + "\n")
@@ -145,7 +143,7 @@ def main(file_list):
 
     # GUI setup
     root = Tk()
-    root.title("画像リネーム・検証ツール")
+    root.title("画像コピー＋検証ツール")
     root.geometry(f"{window_size[0]}x{window_size[1]}")
 
     panel = Label(root)
@@ -156,7 +154,6 @@ def main(file_list):
 
     entry = Entry(root, width=100, font=("Arial", 16))
     entry.pack(pady=10)
-    set_placeholder(entry, "spot_name-photo_name")
 
     btn = Button(root, text="保存して次へ", command=rename, font=("Arial", 14))
     btn.pack()
@@ -168,6 +165,30 @@ def main(file_list):
 
 if __name__ == '__main__':
     print("入力パターン：spot_name-photo_name")
-    target_files = gather_target_files()
-    main(target_files)
+
+    processed = set()
+    if os.path.exists("processed.txt"):
+        with open("processed.txt", "r", encoding="utf-8") as f:
+            for line in f:
+                processed.add(line.strip())
+
+    target_files = []
+    raw_root = "raw_photo"
+
+    for user in os.listdir(raw_root):
+        user_path = os.path.join(raw_root, user)
+        if not os.path.isdir(user_path):
+            continue
+
+        assert user in user_dict, \
+                f"未知のユーザーです：{user}"
+
+        for filename in os.listdir(user_path):
+            if os.path.join(user_path, filename) not in processed:
+                target_files.append((user, filename))
+
+    if not target_files:
+        print("処理対象の画像がありません") 
+    else:
+        main(target_files)
 

@@ -25,8 +25,12 @@ netlify
 .idea
 .vercel
 
-# others
+# cache
+__pycache__/
 *.swp
+
+# others
 import_photo/raw_photo/
 public/images/main.py
 src/content/main.py
+import_photo/processed.txt
