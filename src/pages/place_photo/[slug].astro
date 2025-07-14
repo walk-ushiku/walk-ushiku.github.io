@@ -1,0 +1,68 @@
+---
+export const prerender = true;
+
+import { getCollection } from 'astro:content';
+import DefaultPageLayout from '$/layouts/default.astro';
+
+// 静的パスの生成（related_place をそのまま slug として使用）
+export async function getStaticPaths() {
+  const allPhotos = await getCollection('photo_pages');
+
+  const places = Array.from(new Set(
+    allPhotos.map(p => p.data.related_place).filter(Boolean)
+  ));
+
+  return places.map(place => ({
+    params: { slug: place }
+  }));
+}
+
+// ページ本体
+const { slug } = Astro.params;
+const allPhotos = await getCollection('photo_pages');
+const spotNotes = await getCollection('spot_note');
+
+const filteredPhotos = allPhotos
+  .filter(p => p.data.related_place === slug)
+  .map(p => ({
+    slug: p.slug,
+    image: p.data.image,
+    title: p.data.title
+  }))
+  .sort((a, b) => {
+    const nameA = a.image.split('/').at(-1) || '';
+    const nameB = b.image.split('/').at(-1) || '';
+    return nameA.localeCompare(nameB, 'ja');
+  });
+
+// spot_note から観光地のタイトルを探す
+const spot = spotNotes.find(s => s.slug === slug);
+const displayTitle = spot?.data.title ?? slug;
+
+const title = `写真一覧：${displayTitle}`;
+const description = `${displayTitle}の写真を一覧で表示します。`;
+---
+
+<DefaultPageLayout content={{ title, description }}>
+  <section class="gallery-grid">
+    {filteredPhotos.map(photo => (
+      <a href={`/photo_pages/${photo.slug}`} class="block">
+        <figure class="overflow-hidden rounded shadow hover:shadow-lg transition aspect-[3/2]">
+          <img
+            src={photo.image}
+            alt={photo.title || "ギャラリー写真"}
+            loading="lazy"
+            class="w-full h-full object-cover"
+          />
+        </figure>
+      </a>
+    ))}
+  </section>
+
+  <style>
+    .gallery-grid {
+      @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4;
+    }
+  </style>
+</DefaultPageLayout>
+

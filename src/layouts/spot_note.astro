@@ -44,6 +44,14 @@ const AUTHOR_AVATAR = content.authorImage ? content.authorImage : SITE?.authorIm
                 )}
                 </div>
             )}
+            <div class="post__tags mt-2">
+                <span class="post__tag_">
+                関連：
+                <a class="post__tag" href={`/place_photo/${meta.slug}`}>
+                    写真一覧
+                </a>
+                </span>
+            </div>
             </div>
         </div>
         {
