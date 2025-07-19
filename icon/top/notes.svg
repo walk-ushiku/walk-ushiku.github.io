@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" 
+     viewBox="0 0 512 512" 
+     width="512" height="512">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 13.91px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke-linecap: round;
+        stroke-width: 20px;
+      }
+    </style>
+  </defs>
+
+  <!-- 中心に配置するためにtranslate -->
+  <g transform="translate(70.655, 45.045)">
+    <path class="cls-1" d="M308.74,116.95h19.11c19.82,0,35.89,16.07,35.89,35.89v226.21c0,19.82-16.07,35.89-35.89,35.89h-175c-19.82,0-35.89-16.07-35.89-35.89v-19.11"/>
+    <path class="cls-1" d="M116.95,359.95h-19.11c-19.82,0-35.89-16.07-35.89-35.89v-19.11"/>
+    <path class="cls-1" d="M308.74,116.95v207.11c0,19.82-16.07,35.89-35.89,35.89H116.95"/>
+    <path class="cls-1" d="M253.74,61.95h19.11c19.82,0,35.89,16.07,35.89,35.89v19.11"/>
+    <rect class="cls-1" x="6.95" y="6.95" width="246.79" height="298" rx="35.89" ry="35.89"/>
+    <line class="cls-2" x1="63.35" y1="85.95" x2="197.35" y2="85.95"/>
+    <line class="cls-2" x1="63.35" y1="155.95" x2="197.35" y2="155.95"/>
+    <line class="cls-2" x1="63.35" y1="225.95" x2="197.35" y2="225.95"/>
+  </g>
+</svg>
