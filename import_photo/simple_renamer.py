@@ -95,11 +95,20 @@ def main(file_list):
             spot, _ = raw_input.split("-", 1)
             if spot not in spot_name_candidates:
                 print(f"⚠ 不明なスポット名: '{spot}'")
+
+                # 類似候補（編集距離ベース）
                 close = difflib.get_close_matches(spot, spot_name_candidates, n=5, cutoff=0.6)
-                if close:
-                    print("👉 もしかして:", ", ".join(close))
+
+                # prefixマッチ候補（spotが先頭にある文字列）
+                prefix_matches = [name for name in spot_name_candidates if name.startswith(spot) and name not in close]
+
+                # まとめて表示（重複なし）
+                suggestions = close + prefix_matches
+                if suggestions:
+                    print("👉 もしかして:", ", ".join(suggestions))
                 else:
                     print("👉 該当する候補は見つかりませんでした")
+
                 return
 
         # 重複チェック
