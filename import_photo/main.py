@@ -5,7 +5,7 @@ from PIL import Image
 from tqdm import tqdm
 import re
 
-from config import use_dict
+from config import user_dict
 
 input_root = Path("./named_photo")
 output_image_dir = Path("../public/images/photos")
