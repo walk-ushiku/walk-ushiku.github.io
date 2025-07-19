@@ -56,6 +56,8 @@ const photoPagesCollection = defineCollection({
 		related_place: z.string().optional(),
 		lat: z.number().optional(),
 		lng: z.number().optional(),
+		width: z.number().optional(),
+		height: z.number().optional(),
         }),
 });
 

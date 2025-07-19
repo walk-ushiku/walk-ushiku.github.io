@@ -1,0 +1,140 @@
+---
+import { getCollection } from 'astro:content';
+
+const { 
+    places, 
+    targetUrl = '/dev/null',
+    zoom = 14.5,
+    height = "500px",
+} = Astro.props;
+---
+
+<div id="map" class="w-full relative z-0" style={`height: ${height};`}></div>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+></script>
+
+<script 
+  type="application/json" 
+  is:inline set:html={JSON.stringify(places)} 
+  id="places-data"
+></script>
+
+<script
+  type="application/json"
+  is:inline
+  set:html={JSON.stringify(targetUrl)}
+  id="target-url"
+></script>
+
+<script
+  type="application/json"
+  is:inline
+  set:html={JSON.stringify(zoom)}
+  id="zoom-level"
+></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const places = JSON.parse(
+      document.getElementById("places-data").textContent
+    );
+    const targetUrl = JSON.parse(
+      document.getElementById("target-url").textContent
+    );
+    const zoom = JSON.parse(
+      document.getElementById("zoom-level").textContent
+    );
+
+    const targetPlace = places.find(p => p.url == targetUrl);
+    const center = targetPlace
+      ? [targetPlace.lat, targetPlace.lng]
+      : [35.97607932324101, 140.1408927819724];
+
+    const map = L.map("map").setView(center, zoom);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap contributors",
+    }).addTo(map);
+
+    const defaultIcon = L.icon({
+      iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+      shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41],
+    });
+
+    const redIcon = L.icon({
+      iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+      shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41],
+    });
+    
+    places.forEach((place) => {
+      const isTarget = false;
+
+      var icon = defaultIcon;
+      if (place.icon != 'undefined') {
+        var width, height;
+        var ratio = place.width / place.height;
+        if (ratio > 1) {
+            width = 80;
+            height = Math.floor(width / ratio);
+        } else { 
+            height = 80;
+            width = Math.floor(height * ratio);
+        }
+        
+        icon = L.icon({
+          iconUrl: place.icon,
+          iconSize: [width, height],
+          iconAnchor: [25, 50],
+          popupAnchor: [0, -50],
+        });
+      }
+
+      const marker = L.marker([place.lat, place.lng], {
+        icon: icon,
+      }).addTo(map);
+
+      if (isTarget) {
+        const googleMapControl = L.Control.extend({
+          options: {
+            position: 'topright' // ← 右上に表示
+          },
+          onAdd: function () {
+            const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+            container.style.backgroundColor = 'white';
+            container.style.padding = '5px';
+            container.style.cursor = 'pointer';
+            container.title = 'Google Mapで開く';
+            container.innerHTML = '🔗Google Mapで開く';
+            container.style.color = 'black';
+            container.onclick = function () {
+              const lat = `${place.lat}`;
+              const lng = `${place.lng}`;
+              const url = `${place.gmap}`; 
+              window.open(url, '_blank');
+            };
+            return container;
+          }
+        });
+        map.addControl(new googleMapControl());
+
+        marker.bindPopup(`${place.title}`);
+      } else {
+        marker.bindPopup(`<a href="${place.url}">${place.title}</a>`);
+      }
+    });
+  });
+</script>

@@ -20,7 +20,7 @@ const places = posts
     title: p.data.title,
     lat: p.data.lat,
     lng: p.data.lng,
-    icon: p.data.icon ? p.data.icon : 'undefined',
+    icon: p.data.icon ? `/images/icon_photo/${p.slug}.jpg` : 'undefined',
     url: `/spot_note/${p.slug}`,
   }));
 ---

@@ -1,0 +1,28 @@
+---
+// photo_map.astro
+export const prerender = true
+
+import { getCollection } from 'astro:content'
+import DefaultPageLayout from '$/layouts/default.astro'
+import MapViewer from '$/components/NewPhotoMapViewer.astro'
+
+const title = '（開発中）画像地図'
+const description = '写真一覧のうち位置情報の付いたものを地図で表示します'
+
+const photoPages = await getCollection('photo_pages')
+const places = photoPages
+  .filter(p => p.data.lat !== undefined && p.data.lng !== undefined)
+  .map(p => ({
+    title: p.data.description || '写真',
+    lat: p.data.lat,
+    lng: p.data.lng,
+    icon: p.data.image,
+    width: p.data.width,
+    height: p.data.height,
+    url: `/photo_pages/${p.slug}`, // 詳細ページへリンク
+  }))
+---
+<DefaultPageLayout content={{ title, description }}>
+  <MapViewer places={places} />
+</DefaultPageLayout>
+
