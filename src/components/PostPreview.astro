@@ -14,7 +14,7 @@ const { post: { data: post, slug }, asCard = false } = Astro.props
     <div class="w-14 mr-1">
         <div class="post-preview__date">
             <img
-              src={post.icon ?? '/icon/no_image.svg'}
+              src={post.icon ? `/images/icon_photo/${slug}.jpg` : '/icon/no_image.svg'}
               class={`post-preview__date__icon block ${post.icon ? '' : 'dark:invert'}`}
             />
         </div>

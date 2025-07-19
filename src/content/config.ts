@@ -7,7 +7,7 @@ const spotNoteCollection = defineCollection({
 			.max(100, "The title length must be less than or equal to 100 chars"),
 		description: z.string(),
 		tags: z.array(z.string()),
-		icon: z.string().optional(),
+		icon: z.boolean().optional(),
 		lat: z.number(),
 		lng: z.number(),
 		id: z.number(),
