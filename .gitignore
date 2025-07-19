@@ -31,6 +31,7 @@ __pycache__/
 
 # others
 import_photo/raw_photo/
+import_photo/named_photo/
 public/images/main.py
 src/content/main.py
 import_photo/processed.txt
