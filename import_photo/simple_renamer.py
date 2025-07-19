@@ -40,7 +40,7 @@ def gather_target_files(base_folder="raw_photo"):
         if not os.path.isdir(path):
             continue
         for filename in os.listdir(path):
-            if filename.lower().endswith((".jpg", ".jpeg", ".png", ".jfif")):
+            if filename.lower().endswith((".jpg_large", ".jpg", ".jpeg", ".png", ".jfif")):
                 full = os.path.join(path, filename)
                 if not os.path.exists(processed_file) or full not in open(processed_file).read():
                     targets.append((user, filename))

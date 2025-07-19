@@ -5,4 +5,6 @@ user_dict = {
     "ボケ人間ステークス": "sa_16807",
     "吹雪": "hubuki_ma36s",
     "こめつぶ": "aqours_forever_",
+    "sho": "mliella",
+    "おじパン男爵": "ozipandansyaku",
 }
