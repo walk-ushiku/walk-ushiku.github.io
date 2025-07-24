@@ -10,7 +10,7 @@ const title = '（開発中）画像地図'
 const description = '写真一覧のうち位置情報の付いたものを地図で表示します'
 
 const photoPages = await getCollection('photo_pages')
-const places = photoPages
+const all_places = photoPages
   .filter(p => p.data.lat !== undefined && p.data.lng !== undefined)
   .map(p => ({
     title: p.data.description || '写真',
@@ -21,6 +21,30 @@ const places = photoPages
     height: p.data.height,
     url: `/photo_pages/${p.slug}`, // 詳細ページへリンク
   }))
+
+// ランダムシャッフル関数
+function shuffle(array) {
+  return array
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+}
+
+const GRID_SIZE = 0.001; // 0.001度 ≒ 110m
+const seenGrids = new Set();
+const places = shuffle(all_places).filter(p => {
+  const gridLat = Math.floor(p.lat / GRID_SIZE);
+  const gridLng = Math.floor(p.lng / GRID_SIZE);
+  const key = `${gridLat},${gridLng}`;
+
+  if (seenGrids.has(key)) {
+    return false; // このグリッドはすでに使った
+  }
+
+  seenGrids.add(key);
+  return true;
+});
+
 ---
 <DefaultPageLayout content={{ title, description }}>
   <MapViewer places={places} />
