@@ -22,7 +22,11 @@ const { posts, heading } = Astro.props
       <div class="text">
         <h2 class="title">{post.title}</h2>
         {post.author && <p class="author">by {post.author} </p>}
-        {post.description && <p class="desc">{post.description}</p>}
+        {post.description && (
+          <div class="note-comment">
+            <p class="desc">{post.description}</p>
+          </div> 
+        )}
       </div>
     </a>
   ))}
@@ -58,7 +62,11 @@ const { posts, heading } = Astro.props
   }
 
   .text .author {
-    @apply text-sm text-gray-500 pb-2;
+    @apply text-sm text-gray-500;
+  }
+
+  .note-comment {
+    @apply mt-3 pt-3 border-t border-gray-600 dark:border-gray-400;
   }
 
   .text .desc {
