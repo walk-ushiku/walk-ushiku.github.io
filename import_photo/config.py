@@ -7,4 +7,5 @@ user_dict = {
     "こめつぶ": "aqours_forever_",
     "sho": "mliella",
     "おじパン男爵": "ozipandansyaku",
+    "きらん": "kiran_ll",
 }
