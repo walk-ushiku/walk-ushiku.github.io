@@ -1,0 +1,169 @@
+---
+import DefaultPageLayout from '$/layouts/default.astro'
+import LinkedImage from '$/components/LinkedImage.astro'
+import YouTubeEmbed from '$/components/YouTubeEmbed.astro'
+
+const title = 'Liella! 牛久公録特設ページ'
+const description = 'Liella! 牛久公録向けの特設ページです。昼食、会場アクセス、聖地巡礼などの情報をまとめています。'
+---
+
+<DefaultPageLayout content={{ title }} showPageHeader={false}>
+
+  <!-- Hero -->
+  <section class="hero-section">
+    <div class="hero-bg-overlay absolute inset-0 z-0"></div>
+    <div class="hero-overlay">
+      <h1 class="hero-title">牛久公録特設ページ</h1>
+      <p class="hero-subtitle">有志による非公式サイトです<br>昼食や会場アクセスなどの情報を掲載</p>
+    </div>
+  </section>
+
+<!-- 公式情報 -->
+<section class="content-section">
+  <h2 class="section-title">※現在鋭意製作中</h2>
+  <h2 class="section-title">公式情報</h2>
+
+  <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-6 mb-6 text-left">
+    <h3 class="text-xl font-bold mb-1">基本情報</h3>
+    <ul class="list-disc pl-5 space-y-1">
+      <li>日程：2025年9月28日(日)</li>
+      <li>会場：牛久市中央生涯学習センター</li>
+      <li>出演：Liella! 2期生、3期生</li>
+    </ul>
+    <h3 class="text-xl font-bold mt-2 mb-1">開演時間</h3>
+    <ul class="list-disc pl-5 space-y-1">
+      <li>１回目：12:45開場／13:30開演</li>
+      <li>２回目：15:00開場／15:45開演</li>
+      <li>生放送：18:00開場／18:45開演</li>
+    </ul>
+  </div>
+
+  <!-- 右寄せリンク -->
+  <div class="text-right mt-4 mb-2">
+    <a
+      href="https://www.lovelive-anime.jp/yuigaoka/live/live_detail.php?p=sp_radio_2025"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+     mb-4>
+      公式ページはこちら →
+    </a>
+  </div>
+</section>
+
+
+<section class="content-section">
+  <h2 class="section-title">関連ページ</h2>
+  <div class="space-y-4">
+
+    <!-- アクセス -->
+    <a href="/course/chateau_walk/" class="link-card">
+      <div class="link-content">
+        <h3 class="card-title">会場アクセス</h3>
+        <p class="card-description">
+          駅から会場の道、公共交通、駐車場の情報。
+        </p>
+      </div>
+      <img src="/public/images/lovelive/public_recording/icon/access.png" alt="アクセス" class="card-icon" />
+    </a>
+
+    <!-- 聖地情報 -->
+    <a href="/course/chateau_walk/" class="link-card">
+      <div class="link-content">
+        <h3 class="card-title">聖地情報</h3>
+        <p class="card-description">
+          アニメ聖地やコラボの情報。
+        </p>
+      </div>
+      <img src="/public/images/lovelive/public_recording/icon/lovelive.jpg" alt="コラボ" class="card-icon" />
+    </a>
+
+
+    <!-- ランチ -->
+    <a href="/course/chateau_walk/" class="link-card">
+      <div class="link-content">
+        <h3 class="card-title">ランチ情報</h3>
+        <p class="card-description">
+          駅～会場周辺で昼食を食べれる飲食店の情報。
+        </p>
+      </div>
+      <img src="/public/images/lovelive/public_recording/icon/lunch.jpg" alt="蕎麦" class="card-icon" />
+    </a>
+
+    <!-- ディナー情報 -->
+    <a href="/course/chateau_walk/" class="link-card">
+      <div class="link-content">
+        <h3 class="card-title">ディナー情報</h3>
+        <p class="card-description">
+          イベント後に営業している飲食店の情報。
+        </p>
+      </div>
+      <img src="/public/images/lovelive/public_recording/icon/dinner.jpg" alt="ディナー" class="card-icon" />
+    </a>
+
+    <!-- 飲み屋情報 -->
+    <a href="/course/chateau_walk/" class="link-card">
+      <div class="link-content">
+        <h3 class="card-title">飲み屋情報</h3>
+        <p class="card-description">
+          イベント後に営業している飲み屋の情報。
+        </p>
+      </div>
+      <img src="/public/images/lovelive/public_recording/icon/izakaya.jpg" alt="ビール" class="card-icon" />
+    </a>
+
+
+  </div>
+</section>
+
+
+</DefaultPageLayout>
+
+<style>
+  .hero-section {
+    @apply relative w-[98%] mx-auto aspect-[16/6] mt-3 mb-3 rounded-lg overflow-hidden;
+    background-image: url('/images/photos/nato_blooming/central_center-sign.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .hero-bg-overlay {
+    @apply bg-gray-700 opacity-60;
+  }
+  .hero-overlay {
+    @apply absolute inset-0 flex flex-col items-center justify-center text-center px-4 text-white;
+  }
+  .hero-title {
+    @apply text-4xl sm:text-5xl font-bold;
+  }
+  .hero-subtitle {
+    @apply text-base mt-2;
+  }
+
+  .card-icon {
+    @apply sm:w-20 md:w-20 object-cover sm:rounded-xl md:rounded-xl
+  }
+
+  .content-section {
+    @apply max-w-3xl mx-auto py-2 px-2 text-center;
+  }
+  .section-title {
+    @apply text-4xl font-bold mb-2;
+  }
+
+  .link-card {
+    @apply flex items-center justify-between bg-white dark:bg-gray-700 rounded-lg shadow p-4 no-underline
+  }
+  .card-description {
+    @apply text-sm text-gray-600 dark:text-gray-300
+  }
+  .card-title {
+    @apply text-xl font-bold;
+  }
+  .linkbtn {
+    @apply inline-block mt-3 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700;
+  }
+  .link-content {
+    @apply text-left pr-4;
+  }
+</style>
+
