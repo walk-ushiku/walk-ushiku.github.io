@@ -1,0 +1,189 @@
+---
+import DefaultPageLayout from '$/layouts/default.astro'
+import LinkedImage from '$/components/LinkedImage.astro'
+import YouTubeEmbed from '$/components/YouTubeEmbed.astro'
+
+const title = 'Liella! 牛久公録特設ページ'
+const description = 'Liella! 牛久公録向けの特設ページです。昼食、会場アクセス、聖地巡礼などの情報をまとめています。'
+---
+
+<DefaultPageLayout content={{ title }} showPageHeader={false}>
+
+  <!-- Hero -->
+  <section class="hero-section">
+    <div class="hero-bg-overlay absolute inset-0 z-0"></div>
+    <div class="hero-overlay">
+      <h1 class="hero-title">牛久公録特設ページ</h1>
+      <p class="hero-subtitle">有志による非公式サイトです<br>昼食や会場アクセスなどの情報を掲載</p>
+    </div>
+  </section>
+
+<!-- 公式情報 -->
+<section class="content-section">
+  <h2 class="section-title">公式情報</h2>
+
+  <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-6 mb-6 text-left">
+    <h3 class="text-xl font-bold mb-1">基本情報</h3>
+    <ul class="list-disc pl-5 space-y-1">
+      <li>日程：2025年9月28日(日)</li>
+      <li>会場：牛久市中央生涯学習センター</li>
+      <li>出演：Liella! 2期生、3期生</li>
+    </ul>
+    <h3 class="text-xl font-bold mt-2 mb-1">開演時間</h3>
+    <ul class="list-disc pl-5 space-y-1">
+      <li>１回目：12:45開場／13:30開演</li>
+      <li>２回目：15:00開場／15:45開演</li>
+      <li>生放送：18:00開場／18:45開演</li>
+    </ul>
+  </div>
+
+  <!-- 右寄せリンク -->
+  <div class="text-right mt-4 mb-2">
+    <a
+      href="https://www.lovelive-anime.jp/yuigaoka/live/live_detail.php?p=sp_radio_2025"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+     mb-4>
+      公式ページはこちら →
+    </a>
+  </div>
+</section>
+
+
+<section class="content-section">
+  <h2 class="section-title">会場アクセス</h2>
+  <div class="space-y-4">
+
+    <!-- アクセス -->
+    <a href="/course/chateau_walk/" class="flex items-center justify-between bg-white dark:bg-gray-700 rounded-lg shadow p-4 no-underline">
+      <div class="text-left pr-4">
+        <h3 class="text-lg font-bold">会場アクセス</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          （鋭意作成中）
+        </p>
+      </div>
+      <img src="/icon/course/chateau_walk.jpg" alt="アクセス" class="w-12 object-cover rounded" />
+    </a>
+
+    <!-- ランチ -->
+    <a href="/lunch" class="flex items-center justify-between bg-white dark:bg-gray-700 rounded-lg shadow p-4 no-underline">
+      <div class="text-left pr-4">
+        <h3 class="text-lg font-bold">ランチ情報</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          牛久でおすすめのランチスポット
+        </p>
+      </div>
+      <img src="/images/lunch-thumb.jpg" alt="ランチ" class="w-24 h-16 object-cover rounded" />
+    </a>
+
+    <!-- ディナー -->
+    <a href="/lunch" class="flex items-center justify-between bg-white dark:bg-gray-700 rounded-lg shadow p-4 no-underline">
+      <div class="text-left pr-4">
+        <h3 class="text-lg font-bold">ランチ情報</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          牛久でおすすめのランチスポット
+        </p>
+      </div>
+      <img src="/images/lunch-thumb.jpg" alt="ランチ" class="w-24 h-16 object-cover rounded" />
+    </a>
+
+    <!-- 聖地巡礼 -->
+    <a href="/seichi" class="flex items-center justify-between bg-white dark:bg-gray-700 rounded-lg shadow p-4 no-underline">
+      <div class="text-left pr-4">
+        <h3 class="text-lg font-bold">アニメ聖地情報</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          作中に登場するスポットを紹介
+        </p>
+      </div>
+      <img src="/images/seichi-thumb.jpg" alt="聖地巡礼" class="w-24 h-16 object-cover rounded" />
+    </a>
+
+
+    <!-- アクセス -->
+    <a href="/access" class="flex items-center justify-between bg-white dark:bg-gray-700 rounded-lg shadow p-4 no-underline">
+      <div class="text-left pr-4">
+        <h3 class="text-lg font-bold">会場アクセス</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          会場までの行き方ガイド
+        </p>
+      </div>
+      <img src="/images/access-thumb.jpg" alt="アクセス" class="w-24 h-16 object-cover rounded" />
+    </a>
+
+  </div>
+</section>
+
+
+
+
+  <!-- リンク集カード -->
+  <section class="content-section grid gap-4">
+    <h2 class="section-title">関連ページ</h2>
+    <div class="link-card">
+      <h3 class="card-title">公式ページ</h3>
+      <p>ラブライブ！公式のイベントページ</p>
+      <a href="https://www.lovelive-anime.jp/yuigaoka/live/live_detail.php?p=sp_radio_2025" target="_blank" class="linkbtn">開く →</a>
+    </div>
+    <div class="link-card">
+      <h3 class="card-title">会場アクセス</h3>
+      <p>会場までのアクセスガイド</p>
+      <a href="https://example.com/access" target="_blank" class="linkbtn">開く →</a>
+    </div>
+    <div class="link-card">
+      <h3 class="card-title">聖地巡礼情報</h3>
+      <p>アニメや映像特典などで登場した場所</p>
+      <a href="https://example.com/seichi" target="_blank" class="linkbtn">開く →</a>
+    </div>
+    <div class="link-card">
+      <h3 class="card-title">ランチ情報</h3>
+      <p>おすすめのお店紹介</p>
+      <a href="https://example.com/lunch" target="_blank" class="linkbtn">開く →</a>
+    </div>
+    <div class="link-card">
+      <h3 class="card-title">ランチ情報</h3>
+      <p>おすすめのお店紹介</p>
+      <a href="https://example.com/lunch" target="_blank" class="linkbtn">開く →</a>
+    </div>
+  </section>
+
+</DefaultPageLayout>
+
+<style>
+  .hero-section {
+    @apply relative w-[98%] mx-auto aspect-[16/6] mt-3 mb-3 rounded-lg overflow-hidden;
+    background-image: url('/images/photos/nato_blooming/central_center-sign.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .hero-bg-overlay {
+    @apply bg-gray-700 opacity-60;
+  }
+  .hero-overlay {
+    @apply absolute inset-0 flex flex-col items-center justify-center text-center px-4 text-white;
+  }
+  .hero-title {
+    @apply text-4xl sm:text-5xl font-bold;
+  }
+  .hero-subtitle {
+    @apply text-base mt-2;
+  }
+
+  .content-section {
+    @apply max-w-3xl mx-auto py-2 px-2 text-center;
+  }
+  .section-title {
+    @apply text-3xl font-bold mb-2;
+  }
+
+  .link-card {
+    @apply bg-white dark:bg-gray-700 rounded-xl shadow p-6 text-center;
+  }
+  .card-title {
+    @apply text-3xl font-bold mb-2;
+  }
+  .linkbtn {
+    @apply inline-block mt-3 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700;
+  }
+</style>
+

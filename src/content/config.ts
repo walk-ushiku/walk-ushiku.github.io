@@ -12,6 +12,7 @@ const spotNoteCollection = defineCollection({
 		lng: z.number(),
 		id: z.number(),
 		gmap: z.string(),
+		additional: z.array(z.string()).optional(),
 	}),
 });
 
