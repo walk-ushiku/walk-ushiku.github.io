@@ -1,0 +1,223 @@
+---
+/* src/pages/lovelive/public_recording/access.astro */
+import DefaultPageLayout from '$/layouts/default.astro'
+import Prose from '$/components/Prose.astro'
+import LinkedImage from '$/components/LinkedImage.astro'
+
+const title = '牛久公録 会場アクセス'
+
+const toc = [
+  { id: 'walkA',   label: '徒歩：ルートA' },
+  { id: 'walkB',   label: '徒歩：ルートB' },
+  { id: 'bus',     label: 'バス' },
+  { id: 'car',     label: '駐車場' },
+]
+---
+
+<DefaultPageLayout content={{ title }}>
+  <!-- ここは全体を prose に任せる。global.css の .prose* が効く -->
+  <Prose>
+    <h1 id="overview">概要</h1>
+    <p>
+      <a href="/lovelive/public_recording">牛久公録</a> の会場へのアクセスを紹介します。
+    </p>
+
+    <!-- シンプル目次（proseのままでOK） -->
+    <div class="border rounded-md bg-white dark:bg-gray-700 shadow-sm border-gray-300 dark:border-gray-900 p-3">
+      <ul class="m-0 list-disc pl-5 space-y-1"">
+        {toc.map((item) => (
+          <li class="m-0"><a href={`#${item.id}`}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <h1 id="walkA">徒歩：ルートA</h2>
+    <p>
+      牛久駅から会場までは徒歩25分ほどです。Google マップで「牛久市中央生涯学習センター」までの道を検索すると遠回りする道が出てくるので、
+      <span class="text-red-600 font-semibold">経路検索を使う場合は「牛久市立中央図書館」を目的地に</span>設定することをオススメします。
+    </p>
+    <p>
+      ルートAでは、アニメに登場した <a href="/spot_note/chateau">牛久シャトー</a> と、鬼塚姉妹の横断幕がある <a href="/spot_note/city_hall">市役所</a> を経由して会場に向かうルートを紹介します。
+    </p>
+
+    <h3>スクランブル交差点まで</h3>
+    <p>牛久駅から出発です。改札を出て左に曲がってまっすぐ進み、<a href="/spot_note/scrumble">スクランブル交差点</a>を斜め左に進んでいきます。</p>
+
+    <LinkedImage basename="/nato_blooming/station_gate" caption="改札を出て左に曲がります" />
+    <LinkedImage basename="/nato_blooming/station-east" caption="牛久駅東口からまっすぐ進みます" />
+    <LinkedImage basename="/hamyu044/station-hiru" caption="駅東口の写真" />
+    <LinkedImage basename="/nato_blooming/ushiku_scramble_crossing" caption="スクランブル交差点を斜め左に進みます" />
+
+    <h3>シャトーまで</h3>
+    <p>交差点を渡って少し行ったところで左に入って細い道を進み、突き当りをそのまま進んでシャトー通りに合流します。向こう岸に <a href="/spot_note/chateau">牛久シャトー</a> が見えてきます。</p>
+
+    <LinkedImage basename="/nato_blooming/scrumble-to_chateau" caption="ここで左の道に入ります" />
+    <LinkedImage basename="/nato_blooming/to_chateau_dori" caption="この交差点をまっすぐ進みます" />
+    <LinkedImage basename="/nato_blooming/chateau-west" caption="シャトーの看板が見えてきます" />
+    <LinkedImage basename="/nato_blooming/chateau-across_the_street" caption="シャトー本館" />
+
+    <h3>市役所まで</h3>
+    <p>そのままシャトー通りを進んでいき、少し進んだところで左に入ると市役所が見えてきます。</p>
+
+    <LinkedImage basename="/nato_blooming/to_city_hall" caption="ここで左に入ります" />
+    <LinkedImage basename="/nato_blooming/city_hall-front" caption="市役所の全景" />
+    <LinkedImage basename="/hamyu044/city_hall-sunny" caption="入口に鬼塚姉妹の横断幕が！" />
+
+    <h3>消防署の交差点まで</h3>
+    <p>市役所に入る前の道に戻ってそのまま進みます。突き当りを左に曲がって次を右に曲がると大通り（ふれあい通り）に出ます。大通りを出たら左（北）に進みます。</p>
+
+    <LinkedImage basename="/nato_blooming/city_hall-photo1" caption="ここで左に曲がります" />
+    <LinkedImage basename="/nato_blooming/city_hall-photo3" caption="ここで右に曲がると大通りが見えます" />
+    <LinkedImage basename="/nato_blooming/city_hall-photo3" caption="突き当りを左に進みます。" />
+    <LinkedImage basename="/nato_blooming/load2" caption="大通りを北に進みます。" />
+
+    <h3>学習センターまで</h3>
+    <p>消防署の交差点を右に曲がります。消防署が目印です（消防署側には渡っても渡らなくても大丈夫です）。そのまま真っすぐ進むと会場が見えてきます。</p>
+
+    <LinkedImage basename="/nato_blooming/walk_walk9" caption="交差点を右に曲がります。" />
+    <LinkedImage basename="/nato_blooming/walk_walk5" caption="消防署のカッパがかわいい" />
+    <LinkedImage basename="/nato_blooming/load3" caption="こっちを進んでいきます" />
+    <LinkedImage basename="/nato_blooming/load3" caption="こっちを進んでいきます" />
+    <LinkedImage basename="/nato_blooming/library-overview" caption="右手に図書館が見えてきます。" />
+    <LinkedImage basename="/nato_blooming/central_center-overview" caption="中央生涯学習センターが見えてきます。" />
+    <LinkedImage basename="/nato_blooming/central_center-sign" caption="こっから文化ホールに入れます。" />
+
+    <h1 id="walkB">徒歩：ルートB</h2>
+    <p>
+      牛久市ヘルスロード「シャトー通り散策コース」は途中で中央生涯学習センター前を通るため、こちらを通って会場に向かうこともできます。
+      所要時間はルートAとほぼ同じで25分ほどです。ウォーキングコースには銅像が展示されており、シャトー・市役所を既に訪問済みの方にはオススメのルートです。
+    </p>
+    <p>詳細は <a href="/course/chateau_walk">シャトー通り散策コース</a> のページをご覧ください。</p>
+
+    <LinkedImage basename="/nato_blooming/walk_sign2" />
+
+    <h1 id="bus">バス</h2>
+    <p>牛久駅からかっぱ号に乗る場合、以下のルートがあります。</p>
+    <ul>
+      <li>運動公園ルート　中央生涯学習センター　すぐ</li>
+      <li>小坂団地ルート・右回り 東洋大牛久高校入口 徒歩5分</li>
+    </ul>
+    <p>
+      小坂団地ルート・右回りに乗る場合、「つくばセントラル病院前」まで乗車して
+      <a href="/spot_note/kashiwada_shrine">柏田神社</a>（アニメ3期11話に登場）に参拝していくのもオススメです。
+    </p>
+
+    <!-- 簡易時刻表は prose の影響を避けたいので not-prose ラッパで -->
+    <h3>運動公園ルート</h3>
+    <div class="not-prose my-4">
+      <div class="mx-auto max-w-xl rounded-2xl border bg-white/60 dark:bg-gray-800/50 shadow-sm p-4 dark:border-gray-700">
+        <table class="w-full text-center align-middle [font-variant-numeric:tabular-nums]">
+          <thead>
+            <tr class="text-base text-gray-600 dark:text-gray-300">
+              <th class="py-2 font-semibold">① 牛久駅東口</th>
+              <th class="py-2 font-semibold">⑥ 中央生涯学習センター</th>
+            </tr>
+          </thead>
+          <tbody class="text-lg font-semibold tracking-tight text-violet-700 dark:text-violet-300">
+            <tr class="[&:nth-child(odd)]:bg-gray-50/70 dark:[&:nth-child(odd)]:bg-gray-700/40">
+              <td class="py-3">11:30</td>
+              <td class="py-3">11:37</td>
+            </tr>
+            <tr class="[&:nth-child(odd)]:bg-gray-50/70 dark:[&:nth-child(odd)]:bg-gray-700/40">
+              <td class="py-3">12:15</td>
+              <td class="py-3">12:22</td>
+            </tr>
+            <tr>
+              <td colSpan={2} class="py-2 text-base text-gray-700 dark:text-gray-200 bg-violet-100/70 dark:bg-violet-800/50">
+                １回目：12:45開場／13:30開演
+              </td>
+            </tr>
+            <tr class="[&:nth-child(odd)]:bg-gray-50/70 dark:[&:nth-child(odd)]:bg-gray-700/40">
+              <td class="py-3">13:35</td>
+              <td class="py-3">13:42</td>
+            </tr>
+            <tr class="[&:nth-child(odd)]:bg-gray-50/70 dark:[&:nth-child(odd)]:bg-gray-700/40">
+              <td class="py-3">14:30</td>
+              <td class="py-3">14:37</td>
+            </tr>
+            <tr>
+              <td colSpan={2} class="py-2 text-base text-gray-700 dark:text-gray-200 bg-violet-100/70 dark:bg-violet-800/50">
+                ２回目：15:00開場／15:45開演
+              </td>
+            </tr>
+            <tr class="[&:nth-child(odd)]:bg-gray-50/70 dark:[&:nth-child(odd)]:bg-gray-700/40">
+              <td class="py-3">15:45</td>
+              <td class="py-3">15:52</td>
+            </tr>
+            <tr class="[&:nth-child(odd)]:bg-gray-50/70 dark:[&:nth-child(odd)]:bg-gray-700/40">
+              <td class="py-3">17:05</td>
+              <td class="py-3">17:12</td>
+            </tr>
+            <tr>
+              <td colSpan={2} class="py-2 text-base text-gray-700 dark:text-gray-200 bg-violet-100/70 dark:bg-violet-800/50">
+                生放送：18:00開場／18:45開演
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3>小坂団地ルート・右回り</h3>
+    <div class="not-prose my-4">
+      <div class="mx-auto max-w-xl rounded-2xl border bg-white/60 dark:bg-gray-800/50 shadow-sm p-4 dark:border-gray-700">
+        <table class="w-full text-center align-middle [font-variant-numeric:tabular-nums]">
+          <thead>
+            <tr class="text-base text-gray-600 dark:text-gray-300">
+              <th class="py-2 font-semibold">① 牛久駅東口</th>
+              <th class="py-2 font-semibold">⑤ 東洋大牛久高校入口</th>
+            </tr>
+          </thead>
+          <tbody class="text-lg font-semibold tracking-tight text-violet-700 dark:text-violet-300">
+            <tr class="[&:nth-child(odd)]:bg-gray-50/70 dark:[&:nth-child(odd)]:bg-gray-700/40">
+              <td class="py-3">11:05</td>
+              <td class="py-3">11:11</td>
+            </tr>
+            <tr class="[&:nth-child(odd)]:bg-gray-50/70 dark:[&:nth-child(odd)]:bg-gray-700/40">
+              <td class="py-3">13:00</td>
+              <td class="py-3">13:06</td>
+            </tr>
+            <tr>
+              <td colSpan={2} class="py-2 text-base text-gray-700 dark:text-gray-200 bg-violet-100/70 dark:bg-violet-800/50">
+                １回目：12:45開場／13:30開演
+              </td>
+            </tr>
+            <tr class="[&:nth-child(odd)]:bg-gray-50/70 dark:[&:nth-child(odd)]:bg-gray-700/40">
+              <td class="py-3">14:15</td>
+              <td class="py-3">14:21</td>
+            </tr>
+            <tr class="[&:nth-child(odd)]:bg-gray-50/70 dark:[&:nth-child(odd)]:bg-gray-700/40">
+              <td class="py-3">15:30</td>
+              <td class="py-3">15:36</td>
+            </tr>
+            <tr>
+              <td colSpan={2} class="py-2 text-base text-gray-700 dark:text-gray-200 bg-violet-100/70 dark:bg-violet-800/50">
+                ２回目：15:00開場／15:45開演
+              </td>
+            </tr>
+            <tr class="[&:nth-child(odd)]:bg-gray-50/70 dark:[&:nth-child(odd)]:bg-gray-700/40">
+              <td class="py-3">16:45</td>
+              <td class="py-3">16:51</td>
+            </tr>
+            <tr>
+              <td colSpan={2} class="py-2 text-base text-gray-700 dark:text-gray-200 bg-violet-100/70 dark:bg-violet-800/50">
+                生放送：18:00開場／18:45開演
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 dark:text-gray-400">
+      ※ 上記は <a href="https://www.city.ushiku.lg.jp/data/doc/1742170875_doc_272_0.pdf" target="_blank" rel="noopener noreferrer">牛久市の公式資料（PDF）</a> より引用。11時より前の便については省略しています。
+    </p>
+
+    <h1 id="car">駐車場</h2>
+    <p>
+      会場には駐車場が併設されています。
+      <a href="https://www.city.ushiku.lg.jp/page/page000327.html" target="_blank" rel="noopener noreferrer">公式ホームページ</a> によれば台数567台とのことです（内 身障者・ハート・プラス用 6台）。
+    </p>
+  </Prose>
+</DefaultPageLayout>
+

@@ -1,0 +1,157 @@
+---
+import DefaultPageLayout from '$/layouts/default.astro'
+
+const title = 'Liella! 牛久公録特設ページ'
+const description = 'Liella! 牛久公録向けの特設ページです。昼食、会場アクセス、聖地巡礼などの情報をまとめています。'
+
+// Related link cards (title, description, href, image, alt)
+const relatedLinks = [
+  {
+    href: '/lovelive/public_recording/access',
+    title: '会場アクセス',
+    description: '駅から会場の道、公共交通、駐車場の情報。',
+    image: '/images/lovelive/public_recording/icon/access.png',
+    alt: 'アクセス'
+  },
+  {
+    href: '/course/chateau_walk/',
+    title: '聖地情報',
+    description: 'アニメ聖地やコラボの情報。',
+    image: '/images/lovelive/public_recording/icon/lovelive.jpg',
+    alt: 'コラボ'
+  },
+  {
+    href: '/course/chateau_walk/',
+    title: 'ランチ情報',
+    description: '駅～会場周辺で昼食を食べれる飲食店の情報。',
+    image: '/images/lovelive/public_recording/icon/lunch.jpg',
+    alt: 'ランチ'
+  },
+  {
+    href: '/course/chateau_walk/',
+    title: 'ディナー情報',
+    description: 'イベント後に営業している飲食店の情報。',
+    image: '/images/lovelive/public_recording/icon/dinner.jpg',
+    alt: 'ディナー'
+  },
+  {
+    href: '/course/chateau_walk/',
+    title: '飲み屋情報',
+    description: 'イベント後に営業している飲み屋の情報。',
+    image: '/images/lovelive/public_recording/icon/izakaya.jpg',
+    alt: 'ビール'
+  }
+]
+---
+
+<DefaultPageLayout content={{ title, description }} showPageHeader={false}>
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__bg-overlay" aria-hidden="true"></div>
+    <div class="hero__content">
+      <h1 id="hero-title" class="hero__title">牛久公録特設ページ</h1>
+      <p class="hero__subtitle">
+        有志による非公式サイトです<br />
+        昼食や会場アクセスなどの情報を掲載
+      </p>
+    </div>
+  </section>
+
+  <!-- 公式情報 -->
+  <section class="section" aria-labelledby="official-info-title">
+    <div class="section__header">
+      <p class="badge badge--wip">※ 現在鋭意製作中</p>
+      <h2 id="official-info-title" class="section__title">公式情報</h2>
+    </div>
+
+    <div class="card">
+      <h3 class="card__title">基本情報</h3>
+      <ul class="list">
+        <li>日程：2025年9月28日(日)</li>
+        <li>会場：牛久市中央生涯学習センター</li>
+        <li>出演：Liella! 2期生、3期生</li>
+      </ul>
+
+      <h3 class="card__title mt-3">開演時間</h3>
+      <ul class="list">
+        <li>１回目：12:45開場／13:30開演</li>
+        <li>２回目：15:00開場／15:45開演</li>
+        <li>生放送：18:00開場／18:45開演</li>
+      </ul>
+    </div>
+
+    <div class="section__cta">
+      <a
+        href="https://www.lovelive-anime.jp/yuigaoka/live/live_detail.php?p=sp_radio_2025"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn--primary"
+        aria-label="公式ページを新しいタブで開く"
+      >
+        公式ページはこちら →
+      </a>
+    </div>
+  </section>
+
+  <!-- 関連ページ -->
+  <section class="section" aria-labelledby="related-links-title">
+    <h2 id="related-links-title" class="section__title">関連ページ</h2>
+
+    <div class="stack">
+      {relatedLinks.map((link) => (
+        <a href={link.href} class="link-card" aria-label={`${link.title} へ移動`}>
+          <div class="link-card__content">
+            <h3 class="link-card__title">{link.title}</h3>
+            <p class="link-card__desc">{link.description}</p>
+          </div>
+          <img src={link.image} alt={link.alt} class="link-card__icon" loading="lazy" />
+        </a>
+      ))}
+    </div>
+  </section>
+</DefaultPageLayout>
+
+<style>
+  /* ===== Hero ===== */
+  .hero {
+    @apply relative w-[98%] mx-auto aspect-[16/6] mt-3 mb-3 rounded-lg overflow-hidden;
+    background-image: url('/images/photos/nato_blooming/central_center-sign.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .hero__bg-overlay {
+    @apply absolute inset-0 bg-gray-700 opacity-60;
+  }
+  .hero__content {
+    @apply absolute inset-0 flex flex-col items-center justify-center text-center px-4 text-white;
+  }
+  .hero__title { @apply text-4xl sm:text-5xl font-bold; }
+  .hero__subtitle { @apply text-base mt-2; }
+
+  /* ===== Sections ===== */
+  .section { @apply max-w-3xl mx-auto py-2 px-2 text-center; }
+  .section__header { @apply flex flex-col items-center gap-1 mb-2; }
+  .section__title { @apply text-3xl sm:text-4xl font-bold mb-2; }
+  .section__cta { @apply text-right mt-4 mb-2; }
+
+  /* ===== Badges / Buttons ===== */
+  .badge { @apply inline-block text-xs px-2 py-1 rounded; }
+  .badge--wip { @apply bg-amber-100 text-amber-800 dark:bg-amber-300 dark:text-amber-900; }
+
+  .btn { @apply inline-block px-4 py-2 rounded transition; }
+  .btn--primary { @apply bg-purple-600 text-white hover:bg-purple-700; }
+
+  /* ===== Cards ===== */
+  .card { @apply bg-white dark:bg-gray-700 rounded-xl shadow p-6 mb-6 text-left; }
+  .card__title { @apply text-xl font-bold mb-1; }
+  .list { @apply list-disc pl-5 space-y-1; }
+
+  /* ===== Related link cards ===== */
+  .stack { @apply space-y-4; }
+  .link-card { @apply flex items-center justify-between bg-white dark:bg-gray-700 rounded-lg shadow p-4 no-underline; }
+  .link-card__content { @apply text-left pr-4; }
+  .link-card__title { @apply text-xl font-bold; }
+  .link-card__desc { @apply text-sm text-gray-600 dark:text-gray-300; }
+  .link-card__icon { @apply w-28 object-cover rounded-lg; }
+</style>
+
