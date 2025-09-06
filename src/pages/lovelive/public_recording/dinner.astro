@@ -1,0 +1,18 @@
+---
+export const prerender = true;
+
+import SpotListMap from '$/components/lovelive/public_recording/SpotListMap.astro';
+
+const title = '牛久公録 ディナー情報';
+const description = '会場周辺後にやっているご飯屋さんの情報です。';
+
+const INCLUDE_SLUGS = ['central_center'];
+---
+
+<SpotListMap
+  title={title}
+  description={description}
+  additionalKey="kouroku_dinner"
+  includeSlugs={INCLUDE_SLUGS}
+/>
+

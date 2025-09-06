@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 const { 
     places, 
     targetUrl = '/dev/null',
+    center = [35.97607932324101, 140.1408927819724],
     zoom = 14.5,
     height = "500px",
 } = Astro.props;
@@ -35,6 +36,13 @@ const {
 <script
   type="application/json"
   is:inline
+  set:html={JSON.stringify(center)}
+  id="center"
+></script>
+
+<script
+  type="application/json"
+  is:inline
   set:html={JSON.stringify(zoom)}
   id="zoom-level"
 ></script>
@@ -47,6 +55,9 @@ const {
     const targetUrl = JSON.parse(
       document.getElementById("target-url").textContent
     );
+    const default_center = JSON.parse(
+      document.getElementById("center").textContent
+    );
     const zoom = JSON.parse(
       document.getElementById("zoom-level").textContent
     );
@@ -54,7 +65,7 @@ const {
     const targetPlace = places.find(p => p.url == targetUrl);
     const center = targetPlace
       ? [targetPlace.lat, targetPlace.lng]
-      : [35.97607932324101, 140.1408927819724];
+      : default_center;
 
     const map = L.map("map").setView(center, zoom);
 

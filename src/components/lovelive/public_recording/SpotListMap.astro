@@ -1,0 +1,72 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import DefaultPageLayout from '$/layouts/default.astro';
+import PostPreviewList from '$/components/PostPreviewList.astro';
+import MapViewer from '$/components/PhotoMapViewer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  /** additional に含めたい文字列（例: 'kouroku_lunch'） */
+  additionalKey: string;
+  /** 無条件で地図に含めたい slug 群（例外） */
+  includeSlugs?: string[];
+  /** リスト側は additional 該当だけにするか（あなたの現仕様） */
+  listOnlyAdditional?: boolean;
+  /** 地図の高さ */
+  mapHeight?: string;
+  /** 地図のズーム */
+  zoom?: number;
+}
+
+const {
+  title,
+  description,
+  additionalKey,
+  includeSlugs = [],
+  listOnlyAdditional = true,
+  mapHeight = '380px',
+} = Astro.props as Props;
+
+// 1) 全件取得
+const all = await getCollection('spot_note');
+
+// 2) 地図用（additional 該当 or 例外 slug）→ lat/lng 必須
+const filteredForMap = all
+  .filter(
+    (p) =>
+      (Array.isArray(p.data.additional) && p.data.additional.includes(additionalKey)) ||
+      includeSlugs.includes(p.slug)
+  )
+  .filter((p) => p.data.lat && p.data.lng);
+
+// 3) リスト用（デフォは additional 該当のみ / false にすれば地図と同じ母集団）
+const filteredForList: Array<CollectionEntry<'spot_note'>> = listOnlyAdditional
+  ? all.filter(
+      (p) => Array.isArray(p.data.additional) && p.data.additional.includes(additionalKey)
+    )
+  : filteredForMap;
+
+// 4) MapViewer 用の整形
+const places = filteredForMap
+  .map((p) => ({
+    title: p.data.title,
+    lat: p.data.lat,
+    lng: p.data.lng,
+    id: p.data.id,
+    icon: p.data.icon ? `/images/icon_photo/${p.slug}.jpg` : undefined, // ← 'undefined' 文字列はやめる
+    url: `/spot_note/${p.slug}`,
+    gmap: p.data.gmap,
+  }))
+  .sort((a, b) => a.id - b.id);
+---
+
+<DefaultPageLayout content={{ title, description }}>
+  <!-- リスト（CollectionEntry配列をそのまま） -->
+  <PostPreviewList posts={filteredForList} />
+  <br>
+
+  <!-- 地図 -->
+  <MapViewer places={places} height={mapHeight} center = {[35.97828774067374, 140.14775381176043]} />
+</DefaultPageLayout>
+
