@@ -67,7 +67,7 @@ const relatedLinks = [
       <h3 class="card__title">基本情報</h3>
       <ul class="list">
         <li>日程：2025年9月28日(日)</li>
-        <li>会場：牛久市中央生涯学習センター</li>
+        <li>会場：<a href="/spot_note/central_center" class="link-text">牛久市中央生涯学習センター</a></li>
         <li>出演：Liella! 2期生、3期生</li>
       </ul>
 
@@ -152,5 +152,11 @@ const relatedLinks = [
   .link-card__title { @apply text-xl font-bold; }
   .link-card__desc { @apply text-sm text-gray-600 dark:text-gray-300; }
   .link-card__icon { @apply w-28 object-cover rounded-lg; }
+
+  .link-text {
+    @apply text-purple-700 hover:text-purple-900
+           dark:text-purple-300 dark:hover:text-purple-100
+           underline;
+  }
 </style>
 

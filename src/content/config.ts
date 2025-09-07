@@ -2,9 +2,7 @@ import { z, defineCollection } from "astro:content";
 
 const spotNoteCollection = defineCollection({
 	schema: z.object({
-		title: z
-			.string()
-			.max(100, "The title length must be less than or equal to 100 chars"),
+		title: z.string(),
 		description: z.string(),
 		tags: z.array(z.string()),
 		icon: z.boolean().optional(),
@@ -18,9 +16,7 @@ const spotNoteCollection = defineCollection({
 
 const courseCollection = defineCollection({
         schema: z.object({
-                title: z
-                        .string()
-                        .max(100, "The title length must be less than or equal to 100 chars"),
+		title: z.string(),
                 description: z.string(),
                 image: z.string().optional(),
                 icon: z.string(),
@@ -30,18 +26,14 @@ const courseCollection = defineCollection({
 
 const userCollection = defineCollection({
         schema: z.object({
-                title: z
-                        .string()
-                        .max(100, "The title length must be less than or equal to 100 chars"),
+		title: z.string(),
 		twitter_id: z.string(),
         }),
 });
 
 const noteCollection = defineCollection({
         schema: z.object({
-                title: z
-                        .string()
-                        .max(100, "The title length must be less than or equal to 100 chars"),
+		title: z.string(),
                 description: z.string(),
                 image: z.string().optional(),
                 id: z.number(),
