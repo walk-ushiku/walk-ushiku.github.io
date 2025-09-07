@@ -5,7 +5,7 @@ import DefaultPageLayout from '$/layouts/default.astro'
 import Prose from '$/components/Prose.astro'
 import LinkedImage from '$/components/LinkedImage.astro';
 import YouTubeEmbed from '$/components/YouTubeEmbed.astro';
-import MapViewer from '$/components/PhotoMapViewer.astro';
+import MapViewer from '$/components/lovelive/Map.astro';
 
 <DefaultPageLayout content={{ title: frontmatter.title }}>
 <Prose>
@@ -15,7 +15,7 @@ import MapViewer from '$/components/PhotoMapViewer.astro';
 実際の回り方は[聖地巡礼モデルコース](/course/lovelive/)を、
 アニメ画像との比較は[牛久市公式](https://www.city.ushiku.lg.jp/page/page013849.html)を
 ご覧ください。
-<div class="border border-gray-300 dark:border-gray-900 rounded-md bg-white dark:bg-gray-700 shadow-sm">
+<div class="border border-gray-300 dark:border-gray-900 rounded-md bg-white dark:bg-gray-700 shadow-sm mb-2">
 ### &ensp; アニメ聖地
 - [牛久駅](#station)：3期4話、3期11話
 - [牛久シャトー](#chateau)：3期4話
@@ -31,6 +31,9 @@ import MapViewer from '$/components/PhotoMapViewer.astro';
 - [ひたち野さくら公園](#sakura_park)
 - [柏田神社](#kashiwada_shrine)
 </div>
+
+
+<MapViewer />
 
 # 聖地紹介
 ## 牛久駅 <span id="station" />

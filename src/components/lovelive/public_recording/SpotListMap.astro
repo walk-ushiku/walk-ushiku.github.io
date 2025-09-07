@@ -19,11 +19,11 @@ interface Props {
   zoom?: number;
 }
 
+const IncludeSlugs = ['central_center', 'station'];
 const {
   title,
   description,
   additionalKey,
-  includeSlugs = [],
   listOnlyAdditional = true,
   mapHeight = '380px',
 } = Astro.props as Props;
@@ -36,7 +36,7 @@ const filteredForMap = all
   .filter(
     (p) =>
       (Array.isArray(p.data.additional) && p.data.additional.includes(additionalKey)) ||
-      includeSlugs.includes(p.slug)
+      IncludeSlugs.includes(p.slug)
   )
   .filter((p) => p.data.lat && p.data.lng);
 
@@ -50,13 +50,20 @@ const filteredForList: Array<CollectionEntry<'spot_note'>> = listOnlyAdditional
 // 4) MapViewer 用の整形
 const places = filteredForMap
   .map((p) => ({
-    title: p.data.title,
+    title: 
+      p.slug == 'central_center'
+        ? '公録会場'
+        : p.data.title,
     lat: p.data.lat,
     lng: p.data.lng,
     id: p.data.id,
-    icon: p.data.icon ? `/images/icon_photo/${p.slug}.jpg` : undefined, // ← 'undefined' 文字列はやめる
+    icon: 
+      p.data.icon 
+         ? `/images/icon_photo/${p.slug}.jpg`
+         : 'undefined',
     url: `/spot_note/${p.slug}`,
     gmap: p.data.gmap,
+    addPopup: IncludeSlugs.includes(p.slug),
   }))
   .sort((a, b) => a.id - b.id);
 ---

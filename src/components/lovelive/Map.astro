@@ -1,0 +1,21 @@
+---
+// src/components/MapViewerFromSpotNote.astro
+import { getCollection } from 'astro:content';
+import MapViewer from '$/components/PhotoMapViewer.astro';
+
+const posts = await getCollection('spot_note');
+const places = posts
+  .filter(p => p.data.lat && p.data.lng)
+  .filter(p => p.data.tags.includes("ラブライブ！関連"))
+  .map(p => ({
+    title: p.data.title,
+    lat: p.data.lat,
+    lng: p.data.lng,
+    url: `/spot_note/${p.slug}`,
+    icon:
+      p.data.icon
+         ? `/images/icon_photo/${p.slug}.jpg`
+         : 'undefined',
+  }));
+---
+<MapViewer places={places} height='300px' />

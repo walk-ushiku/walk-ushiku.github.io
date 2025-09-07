@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 const { 
     places, 
     targetUrl = '/dev/null',
-    center = [35.97607932324101, 140.1408927819724],
+    center = [35.977814, 140.147371],
     zoom = 14.5,
     height = "500px",
 } = Astro.props;
@@ -95,19 +95,23 @@ const {
       const isTarget = false;
 
       var icon = defaultIcon;
-      if (place.icon != 'undefined') {
+      if (place.icon == 'redIcon') {
+        icon = redIcon;
+      } else if (place.icon != 'undefined') {
         icon = L.icon({
           iconUrl: place.icon,
-          iconSize: [50, 50],
-          iconAnchor: [25, 50],
-          popupAnchor: [0, -50],
+          iconSize: [40, 40],
+          iconAnchor: [20, 40],
+          popupAnchor: [0, -40],
         });
       }
 
       const marker = L.marker([place.lat, place.lng], {
         icon: icon,
+        zIndexOffset: place.addPopup ? 10000 : 0 
       }).addTo(map);
 
+      var bind_text = undefined;
       if (isTarget) {
         const googleMapControl = L.Control.extend({
           options: {
@@ -133,9 +137,23 @@ const {
         map.addControl(new googleMapControl());
 
         marker.bindPopup(`${place.title}`);
+        bind_text = `${place.title}`;
       } else {
-        marker.bindPopup(`<a href="${place.url}">${place.title}</a>`);
+        bind_text = `<a href="${place.url}">${place.title}</a>`;
       }
+
+      if (place.addPopup === true) {
+        marker
+          .bindPopup(bind_text, {
+            autoClose: false,
+            closeOnClick: false,
+          })
+          .openPopup();
+      } else {
+        marker.bindPopup(bind_text);
+      }
+
+
     });
   });
 </script>

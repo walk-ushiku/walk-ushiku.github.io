@@ -6,13 +6,12 @@ import SpotListMap from '$/components/lovelive/public_recording/SpotListMap.astr
 const title = '牛久公録 ランチ情報';
 const description = '会場周辺のランチ情報です。';
 
-const INCLUDE_SLUGS = ['central_center'];
+const ADDITIONAL_KEY = 'kouroku_lunch';
 ---
 
 <SpotListMap
   title={title}
   description={description}
-  additionalKey="kouroku_lunch"
-  includeSlugs={INCLUDE_SLUGS}
+  additionalKey={ADDITIONAL_KEY}
 />
 
