@@ -29,7 +29,7 @@ const {
 } = Astro.props as Props;
 
 // 1) 全件取得
-const all = await getCollection('spot_note');
+const all = await getCollection('spot_note').sort((a, b) => a.data.furigana.localeCompare(b.data.furigana, 'ja', { sensitivity: 'base' }));
 
 // 2) 地図用（additional 該当 or 例外 slug）→ lat/lng 必須
 const filteredForMap = all
