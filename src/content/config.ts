@@ -4,11 +4,11 @@ const spotNoteCollection = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
+		furigana: z.string(),
 		tags: z.array(z.string()),
 		icon: z.boolean().optional(),
 		lat: z.number(),
 		lng: z.number(),
-		id: z.number(),
 		gmap: z.string(),
 		additional: z.array(z.string()).optional(),
 	}),

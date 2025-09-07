@@ -12,7 +12,8 @@ let description = '観光・グルメを一覧形式で探せます'
 
 export async function getStaticPaths({ paginate }) {
   const allPosts = await getCollection('spot_note');
-  const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
+  const sortedPosts = allPosts.sort((a, b) => a.data.furigana.localeCompare(b.data.furigana, 'ja', { sensitivity: 'base' }));
+
 
     return paginate(sortedPosts, {
       pageSize: PAGE_SIZE

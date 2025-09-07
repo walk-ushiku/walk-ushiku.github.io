@@ -9,7 +9,8 @@ interface Props {
 }
 
 const { posts, heading, mode = 'col' } = Astro.props
-const sortedPosts = posts.sort((a, b) => a.data.id - b.data.id);
+// const sortedPosts = posts.sort((a, b) => a.localeCompare(b, 'ja', { sensitivity: 'base' }));
+const sortedPosts = posts;
 ---
 { heading ? <h5 class={`post-preview__heading post-preview__heading--${mode} ink-h`}>{heading}</h5> : ''}
 <section class={`post-preview__list post-preview__list--${mode}`}>

@@ -56,7 +56,6 @@ const places = filteredForMap
         : p.data.title,
     lat: p.data.lat,
     lng: p.data.lng,
-    id: p.data.id,
     icon: 
       p.data.icon 
          ? `/images/icon_photo/${p.slug}.jpg`
@@ -65,7 +64,6 @@ const places = filteredForMap
     gmap: p.data.gmap,
     addPopup: IncludeSlugs.includes(p.slug),
   }))
-  .sort((a, b) => a.id - b.id);
 ---
 
 <DefaultPageLayout content={{ title, description }}>
