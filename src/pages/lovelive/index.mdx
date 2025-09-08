@@ -8,13 +8,17 @@ import YouTubeEmbed from '$/components/YouTubeEmbed.astro';
 import MapViewer from '$/components/lovelive/Map.astro';
 
 <DefaultPageLayout content={{ title: frontmatter.title }}>
+ <div class="mb-6">
+  <a
+    href="/lovelive/public_recording"
+    class="inline-block bg-purple-600 text-white px-5 py-2.5 rounded-lg shadow hover:bg-purple-700 transition"
+  >
+    公録トップページはこちら
+  </a>
+</div>
 <Prose>
 
 # 目次
-このページでは各聖地ごとにラブライブ！作品との関連を紹介します。
-実際の回り方は[聖地巡礼モデルコース](/course/lovelive/)を、
-アニメ画像との比較は[牛久市公式](https://www.city.ushiku.lg.jp/page/page013849.html)を
-ご覧ください。
 <div class="border border-gray-300 dark:border-gray-900 rounded-md bg-white dark:bg-gray-700 shadow-sm mb-2">
 ### &ensp; アニメ聖地
 - [牛久駅](#station)：3期4話、3期11話
@@ -30,6 +34,9 @@ import MapViewer from '$/components/lovelive/Map.astro';
 ### &ensp;&ensp;鬼塚姉妹の #うしくさんぽ
 - [ひたち野さくら公園](#sakura_park)
 - [柏田神社](#kashiwada_shrine)
+### &ensp;&ensp;関連リンク（別ページ）
+- [聖地巡礼モデルコース](/course/lovelive/)
+- [牛久市公式](https://www.city.ushiku.lg.jp/page/page013849.html)（アニメ画像との比較）
 </div>
 
 

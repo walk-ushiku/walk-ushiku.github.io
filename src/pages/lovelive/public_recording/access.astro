@@ -15,12 +15,19 @@ const toc = [
 ---
 
 <DefaultPageLayout content={{ title }}>
+  <!-- トップページへの案内ボタン -->
+  <div class="mb-6">
+    <a
+      href="/lovelive/public_recording"
+      class="inline-block bg-purple-600 text-white px-5 py-2.5 rounded-lg shadow hover:bg-purple-700 transition"
+    >
+      公録トップページはこちら
+    </a>
+  </div>
+
   <!-- ここは全体を prose に任せる。global.css の .prose* が効く -->
   <Prose>
-    <h1 id="overview">概要</h1>
-    <p>
-      牛久市中央生涯学習センターへのアクセスを紹介します。その他の情報は<a href="/lovelive/public_recording">公録特設サイト</a>よりご覧ください。
-    </p>
+    <h1 id="overview">目次</h1>
 
     <!-- シンプル目次（proseのままでOK） -->
     <div class="border rounded-md bg-white dark:bg-gray-700 shadow-sm border-gray-300 dark:border-gray-900 p-3">

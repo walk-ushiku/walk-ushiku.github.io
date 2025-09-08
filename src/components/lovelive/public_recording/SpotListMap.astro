@@ -23,33 +23,24 @@ const IncludeSlugs = ['central_center', 'station'];
 const {
   title,
   description,
-  additionalKey,
-  listOnlyAdditional = true,
+  spotList,
   mapHeight = '380px',
 } = Astro.props as Props;
+const allSpotList = [...IncludeSlugs, ...spotList];
 
 // 1) 全件取得
 const raw_all = await getCollection('spot_note');
 const all = raw_all.sort((a, b) => a.data.furigana.localeCompare(b.data.furigana, 'ja', { sensitivity: 'base' }));
 
-// 2) 地図用（additional 該当 or 例外 slug）→ lat/lng 必須
-const filteredForMap = all
+// 2) リスト：spotList 該当 → lat/lng 必須
+const filtered = all
   .filter(
-    (p) =>
-      (Array.isArray(p.data.additional) && p.data.additional.includes(additionalKey)) ||
-      IncludeSlugs.includes(p.slug)
+    (p) => allSpotList.includes(p.slug)
   )
   .filter((p) => p.data.lat && p.data.lng);
 
-// 3) リスト用（デフォは additional 該当のみ / false にすれば地図と同じ母集団）
-const filteredForList: Array<CollectionEntry<'spot_note'>> = listOnlyAdditional
-  ? all.filter(
-      (p) => Array.isArray(p.data.additional) && p.data.additional.includes(additionalKey)
-    )
-  : filteredForMap;
-
-// 4) MapViewer 用の整形
-const places = filteredForMap
+// 3) MapViewer 用の整形
+const places = filtered
   .map((p) => ({
     title: 
       p.slug == 'central_center'
@@ -68,8 +59,18 @@ const places = filteredForMap
 ---
 
 <DefaultPageLayout content={{ title, description }}>
+  <!-- トップページへの案内ボタン -->
+  <div class="mb-6">
+    <a
+      href="/lovelive/public_recording"
+      class="inline-block bg-purple-600 text-white px-5 py-2.5 rounded-lg shadow hover:bg-purple-700 transition"
+    >
+      公録トップページはこちら
+    </a>
+  </div>
+
   <!-- リスト（CollectionEntry配列をそのまま） -->
-  <PostPreviewList posts={filteredForList} />
+  <PostPreviewList posts={filtered} />
   <br>
 
   <!-- 地図 -->
