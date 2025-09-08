@@ -27,7 +27,9 @@ export async function getStaticPaths({ }) {
 const { pages } = Astro.props
 const { tag } = Astro.params
 
-const places = pages
+const sorted_pages = pages.sort((a, b) => a.data.furigana.localeCompare(b.data.furigana, 'ja', { sensitivity: 'base' }));
+
+const places = sorted_pages
   .filter(p => p.data.lat && p.data.lng)
   .map(p => ({
     title: p.data.title,
@@ -39,7 +41,7 @@ const places = pages
 ---
 
 <DefaultPageLayout content={{ title: `タグ：${tag}`, description: `` }}>
-    <PostPreviewList posts={pages} />
+    <PostPreviewList posts={sorted_pages} />
     <div class="mb-4" />
     <MapViewer places={places} />
 </DefaultPageLayout>
