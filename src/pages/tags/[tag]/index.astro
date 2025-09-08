@@ -4,6 +4,7 @@ export const prerender = true
 import { getCollection } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
 import PostPreviewList from '$/components/PostPreviewList.astro'
+import MapViewer from '$/components/PhotoMapViewer.astro';
 
 export async function getStaticPaths({ }) {
   const allPosts = await getCollection('spot_note')
@@ -25,8 +26,20 @@ export async function getStaticPaths({ }) {
 
 const { pages } = Astro.props
 const { tag } = Astro.params
+
+const places = pages
+  .filter(p => p.data.lat && p.data.lng)
+  .map(p => ({
+    title: p.data.title,
+    lat: p.data.lat,
+    lng: p.data.lng,
+    icon: p.data.icon ? `/images/icon_photo/${p.slug}.jpg` : 'undefined',
+    url: `/spot_note/${p.slug}`,
+  }));
 ---
 
 <DefaultPageLayout content={{ title: `タグ：${tag}`, description: `` }}>
     <PostPreviewList posts={pages} />
+    <div class="mb-4" />
+    <MapViewer places={places} />
 </DefaultPageLayout>
