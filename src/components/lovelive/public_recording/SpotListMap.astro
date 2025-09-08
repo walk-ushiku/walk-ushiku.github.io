@@ -35,12 +35,15 @@ const all = raw_all.sort((a, b) => a.data.furigana.localeCompare(b.data.furigana
 // 2) リスト：spotList 該当 → lat/lng 必須
 const filtered = all
   .filter(
-    (p) => allSpotList.includes(p.slug)
+    (p) => spotList.includes(p.slug)
   )
   .filter((p) => p.data.lat && p.data.lng);
 
 // 3) MapViewer 用の整形
-const places = filtered
+const places = all
+  .filter(
+    (p) => allSpotList.includes(p.slug)
+  )
   .map((p) => ({
     title: 
       p.slug == 'central_center'
