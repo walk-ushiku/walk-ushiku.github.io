@@ -36,3 +36,7 @@ public/images/main.py
 public/images/icon_photo/raw/
 src/content/main.py
 import_photo/processed.txt
+
+dev/hoge.py
+dev/main.py
+dev/sub.py
