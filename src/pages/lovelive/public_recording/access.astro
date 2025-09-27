@@ -7,8 +7,7 @@ import LinkedImage from '$/components/LinkedImage.astro'
 const title = '牛久公録 会場アクセス'
 
 const toc = [
-  { id: 'walkA',   label: '徒歩：ルートA' },
-  { id: 'walkB',   label: '徒歩：ルートB' },
+  { id: 'walkA',   label: '徒歩' },
   { id: 'bus',     label: 'バス' },
   { id: 'car',     label: '駐車場' },
 ]
@@ -38,21 +37,23 @@ const toc = [
       </ul>
     </div>
 
-    <h1 id="walkA">徒歩：ルートA</h2>
+    <h1 id="walkA">徒歩</h2>
     <p>
       牛久駅から会場までは徒歩25分ほどです。Google マップで「牛久市中央生涯学習センター」までの道を検索すると遠回りする道が出てくるので、
       <span class="text-red-600 font-semibold">駅から経路検索する場合は「牛久市立中央図書館」を目的地に</span>設定することをオススメします。
     </p>
     <p>
-      ルートAでは駅前のマンホール・歩道橋、アニメに登場した <a href="/spot_note/chateau">牛久シャトー</a> 、鬼塚姉妹の横断幕がある <a href="/spot_note/city_hall">市役所</a> を経由して会場に向かうルートを紹介します。
+      ここでは駅前のマンホール・歩道橋、アニメに登場した <a href="/spot_note/chateau">牛久シャトー</a> 、鬼塚姉妹の横断幕がある <a href="/spot_note/city_hall">市役所</a> を経由して会場に向かうルートを紹介します。（ちなみに<a href="/course/chateau_walk">シャトー通り散策コース</a>でも行けるので、興味のある方はこちらもご検討ください。）
     </p>
     <LinkedImage basename="/nato_blooming/kouroku_route" ext="png"/>
 
-    <h3>マンホールまで</h3>
-    <p>牛久駅から出発です。改札を出て左に曲がってまっすぐ進み、階段を降りて東口から出ます。駅前のロータリーを左回りに進むと<a href="/spot_note/manhole">マンホール</a>が見えてきます。なお、<a href="/spot_note/imosen">芋千</a>さんは出口の右手すぐにあります。</p>
+    <h3>駅前コラボ情報</h3>
+    <p>牛久駅を出発する前に、駅周辺のコラボ情報を簡単に紹介させてください。西口直結のエスカード牛久では<a href="https://www.lovelive-anime.jp/news/01_5299.html" target="_blank">ゲーマーズ牛久店</a>、<a href="https://www.city.ushiku.lg.jp/page/page013913.html" target="_blank">いばらき自慢</a>、<a href="https://www.city.ushiku.lg.jp/page/page013914.html" target="_blank">南部珈琲</a>のコラボを実施しています。また、東口すぐの場所で<a href="https://www.city.ushiku.lg.jp/page/page013916.html" target="_blank">芋千</a>さんのコラボがあります。詳しくは<a href="https://www.lovelive-anime.jp/news/01_5325.html" target="_blank">こちら</a>から。時間に余裕のある方はぜひ寄り道してみてください。</p>
 
-    <LinkedImage basename="/nato_blooming/station_gate" caption="改札を出て左に曲がります" />
-    <LinkedImage basename="/nato_blooming/station-east" caption="牛久駅東口からまっすぐ進みます" />
+    <h3>マンホールまで</h3>
+    <p>牛久駅から出発です。改札を出て左側、東口から出ます。駅前ロータリーを左回りに進むと<a href="/spot_note/manhole">マンホール</a>が見えてきます。</p>
+
+    <LinkedImage basename="/nato_blooming/station-east" caption="こっちに出ると東口です" />
     <LinkedImage basename="/hamyu044/station-hiru" caption="駅東口、写真の右手方向に進みます" />
     <LinkedImage basename="/nato_blooming/station-rotary" caption="こっちに進みます" />
 	<LinkedImage basename="/nato_blooming/ekimae" caption="ロータリー沿いに進みます"/>
@@ -94,6 +95,7 @@ const toc = [
     <LinkedImage basename="/nato_blooming/central_center-overview" caption="中央生涯学習センターが見えてきます。" />
     <LinkedImage basename="/nato_blooming/central_center-sign" caption="ここから文化ホールに入れます。" />
 
+    <!--
     <h1 id="walkB">徒歩：ルートB</h2>
     <p>
       牛久市ヘルスロード「シャトー通り散策コース」は途中で中央生涯学習センター前を通るため、こちらを通って会場に向かうこともできます。
@@ -102,6 +104,7 @@ const toc = [
     <p>詳細は <a href="/course/chateau_walk">シャトー通り散策コース</a> のページをご覧ください。</p>
 
     <LinkedImage basename="/nato_blooming/walk_sign2" />
+    -->
 
     <h1 id="bus">バス</h2>
     <p>牛久駅からかっぱ号に乗る場合、以下のルートがあります。</p>
