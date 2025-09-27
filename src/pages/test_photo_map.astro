@@ -30,7 +30,8 @@ function shuffle(array) {
     .map(({ value }) => value);
 }
 
-const GRID_SIZE = 0.001; // 0.001度 ≒ 110m
+//const GRID_SIZE = 0.001; // 0.001度 ≒ 110m
+const GRID_SIZE = 0.0000000001; // 0.001度 ≒ 110m
 const seenGrids = new Set();
 const places = shuffle(all_places).filter(p => {
   const gridLat = Math.floor(p.lat / GRID_SIZE);
