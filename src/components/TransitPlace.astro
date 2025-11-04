@@ -1,11 +1,19 @@
 ---
-const { time, name } = Astro.props;
+const { time, name, href } = Astro.props;
 ---
 
 <div class="flex items-start gap-2 text-base my-2">
-  <div class="w-14 text-right font-mono text-gray-500 dark:text-gray-300">{time}</div>
-  <div class="relative pl-2 drak:text-gray-200">
-    <div>{name}</div>
+  <div class="w-14 text-right font-mono text-gray-500 dark:text-gray-300">
+    {time}
+  </div>
+
+  <div class="relative pl-2 dark:text-gray-200">
+    {href ? (
+      <a href={href} class="hover:underline">
+        {name}
+      </a>
+    ) : (
+      <div>{name}</div>
+    )}
   </div>
 </div>
-
