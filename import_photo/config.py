@@ -8,4 +8,5 @@ user_dict = {
     "sho": "mliella",
     "おじパン男爵": "ozipandansyaku",
     "きらん": "kiran_ll",
+    "ぱるげ": "_ws_parge"
 }
