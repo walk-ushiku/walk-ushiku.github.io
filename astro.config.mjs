@@ -50,6 +50,6 @@ export default defineConfig( /** @type {import('astro').AstroUserConfig} */{
     }
   },
   server: {
-    host: false
+    host: true
   }
 });

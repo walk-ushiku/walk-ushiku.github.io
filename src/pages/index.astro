@@ -10,12 +10,28 @@ const description = '有志による非公式の牛久観光サイトです'
 ---
 <DefaultPageLayout content={{ title, description }} showPageHeader={false}>
 
-<section class="hero-section">
-  <div class="hero-bg-overlay absolute inset-0 z-0"></div>
+<section class="hero-card">
+  <!-- 画像エリア -->
+  <div class="hero-media">
+    <div class="hero-bg-overlay absolute inset-0 z-0"></div>
+    <div class="hero-overlay">
+      <h1 class="hero-title">ホーム</h1>
+ <p class="hero-subtitle">有志による牛久観光サイトです</p>
+    </div>
+  </div>
 
-  <div class="hero-overlay">
-    <h1 class="hero-title">ホーム</h1>
-    <p class="hero-subtitle">牛久観光情報のサイトです。<br>有志が非公式に作成しました。</p>
+  <!-- 説明エリア -->
+  <div class="hero-desc">
+    <div class="desc-head">
+      <div class="desc-icon">👣</div>
+      <h2 class="desc-title">#うしくさんぽ とは？</h2>
+    </div>
+
+    <p class="desc-text">
+      牛久市が発信を推奨している観光タグです。<br>
+      このサイトでは、うしくさんぽ情報を発信しています。<br>
+      <span class="desc-note">※本サイトは牛久市の公式サイトではありません</span>
+    </p>
   </div>
 </section>
 
@@ -103,29 +119,63 @@ const description = '有志による非公式の牛久観光サイトです'
 </DefaultPageLayout>
 
 <style>
-  .hero-section {
-    @apply relative w-[98%] mx-auto aspect-[16/6] mt-3 mb-3 rounded-lg overflow-hidden;
-    background-image: url('/images/photos/ushiku_station_east.jpg');
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .hero-bg-overlay {
-    @apply bg-white opacity-60 dark:bg-black dark:opacity-60;
-  }
+.hero-card {
+  @apply w-[98%] mx-auto mt-3 mb-3 rounded-lg overflow-hidden
+    border border-gray-300 dark:border-gray-600;
+  /* ここがカードの外枠 */
+}
 
-  .hero-overlay {
-    @apply absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4;
-    z-index: 10;
-  }
-  
-  .hero-title {
-    @apply text-5xl font-bold sm:text-5xl text-black dark:text-white;
-  }
-  
-  .hero-subtitle {
-    @apply text-base mt-2 text-black dark:text-white
-  }
+/* 上半分：画像 */
+.hero-media {
+  @apply relative w-full aspect-[16/5] overflow-hidden;
+  background-image: url('/images/photos/ushiku_station_east.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-bg-overlay {
+  @apply bg-white opacity-60 dark:bg-black dark:opacity-60;
+}
+
+.hero-overlay {
+  @apply absolute inset-0 flex flex-col items-center justify-center text-center px-4;
+  z-index: 10;
+}
+
+.hero-title {
+  @apply text-5xl font-bold sm:text-5xl text-black dark:text-white;
+}
+
+.hero-subtitle {
+   @apply text-base mt-2 text-black dark:text-white
+}
+
+/* 下半分：説明（カードの一部） */
+.hero-desc {
+  @apply bg-purple-50 dark:bg-gray-800 px-4 py-3;
+  /* ここを薄紫にして画像と一体の下地にする */
+}
+
+.desc-head {
+  @apply flex items-center gap-2 mb-2;
+}
+
+.desc-icon {
+  @apply w-9 h-9 rounded-full bg-purple-200 dark:bg-purple-900
+    flex items-center justify-center;
+}
+
+.desc-title {
+  @apply text-xl font-semibold;
+}
+
+.desc-text {
+  @apply text-sm leading-relaxed text-gray-900 dark:text-gray-100;
+}
+
+.desc-note {
+  @apply text-xs text-gray-600 dark:text-gray-300;
+}
 
   .category-section {
     @apply mb-4 mt-3 px-1;
